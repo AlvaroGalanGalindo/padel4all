@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pista</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ pistum.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ pistum.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Propietario</th>
+                <td>{{ pistum.propietario }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ pistum.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Localidad</th>
+                <td>{{ pistum.localidad }}</td>
+            </tr>
+            <tr>
+                <th>Provincia</th>
+                <td>{{ pistum.provincia }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ pistum.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Horario</th>
+                <td>{{ pistum.horario }}</td>
+            </tr>
+            <tr>
+                <th>Precio</th>
+                <td>{{ pistum.precio }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pista_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('pista_edit', { 'id': pistum.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

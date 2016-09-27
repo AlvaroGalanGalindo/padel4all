@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Pista list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Propietario</th>
+                <th>Direccion</th>
+                <th>Localidad</th>
+                <th>Provincia</th>
+                <th>Telefono</th>
+                <th>Horario</th>
+                <th>Precio</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pistum in pistas %}
+            <tr>
+                <td><a href="{{ path('pista_show', { 'id': pistum.id }) }}">{{ pistum.id }}</a></td>
+                <td>{{ pistum.nombre }}</td>
+                <td>{{ pistum.propietario }}</td>
+                <td>{{ pistum.direccion }}</td>
+                <td>{{ pistum.localidad }}</td>
+                <td>{{ pistum.provincia }}</td>
+                <td>{{ pistum.telefono }}</td>
+                <td>{{ pistum.horario }}</td>
+                <td>{{ pistum.precio }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('pista_show', { 'id': pistum.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('pista_edit', { 'id': pistum.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('pista_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
