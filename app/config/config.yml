@@ -84,3 +84,13 @@ doctrine:
         dbname:   '%database_name%'
         user:     '%database_user%'
         password: '%database_password%'
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+        less:
+            node: /usr/local/bin/node
+            node_paths: [/usr/local/lib/node_modules/]
+            apply_to: "\.less$"
