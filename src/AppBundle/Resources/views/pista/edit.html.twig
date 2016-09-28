@@ -7,25 +7,30 @@
             <form class="bs-example form-horizontal">
                 {{ form_errors(edit_form) }}
                 {% for item in edit_form %}
-                    <div class="form-group">
-                            {{ form_label(item, null, {'label_attr': {'class': 'control-label col-sm-1'}}) }}
-                            <div class="col-sm-11">
-                                <div class="input-group">
-                                    {{ form_widget(item, {'attr': {'class': 'form-control'}}) }}
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+                    {% if item.vars.id != "pista__token" %}
+                        <div class="form-group">
+                                {{ form_label(item, null, {'label_attr': {'class': 'control-label col-sm-1'}}) }}
+                                <div class="col-sm-11">
+                                    <div class="input-group">
+                                        {{ form_widget(item, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+                                    </div>
                                 </div>
-                            </div>
-                    </div>
+                        </div>
+                    {% endif %}
                 {% endfor %}
+
+                {{ form_widget(edit_form) }}
 
                 <div class="pull-right">
                     <input type="submit" value="Guardar" class="btn btn-success" />
                     <a href="{{ path('pista_index') }}" class="btn btn-info">Volver al listado</a>
-                    {{ form_start(delete_form) }}
-                        <input type="submit" value="Borrar" class="btn btn-danger">
-                    {{ form_end(delete_form) }}
                 </div>
             </form>
+
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Borrar" class="btn btn-danger">
+            {{ form_end(delete_form) }}
         </div>
     </div>
 
