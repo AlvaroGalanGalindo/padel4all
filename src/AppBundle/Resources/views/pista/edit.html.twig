@@ -1,24 +1,23 @@
 {% extends '@App/base.html.twig' %}
 
 {% block body %}
+    <i class="fa fa-user" aria-hidden="true"></i>
+
     <div class="container">
         <div class="content">
             <div class="page-header"><h1>Edición de pista</h1></div>
-            <form class="bs-example form-horizontal">
+            {{ form_start(edit_form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
                 {{ form_errors(edit_form) }}
-                {% for item in edit_form %}
-                    {% if item.vars.id != "pista__token" %}
-                        <div class="form-group">
-                                {{ form_label(item, null, {'label_attr': {'class': 'control-label col-sm-1'}}) }}
-                                <div class="col-sm-11">
-                                    <div class="input-group">
-                                        {{ form_widget(item, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
-                                    </div>
-                                </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.nombre, 'icono': 'pencil'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.propietario, 'icono': 'user'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.direccion, 'icono': 'map-marker'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.localidad, 'icono': 'map-marker'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.provincia, 'icono': 'map-marker'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.telefono, 'icono': 'iphone'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.horario, 'icono': 'clock'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.precio, 'icono': 'euro'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.tipo, 'icono': 'lock'} %}
 
                 {{ form_widget(edit_form) }}
 
@@ -26,7 +25,7 @@
                     <input type="submit" value="Guardar" class="btn btn-success" />
                     <a href="{{ path('pista_index') }}" class="btn btn-info">Volver al listado</a>
                 </div>
-            </form>
+            {{ form_end(edit_form) }}
 
             {{ form_start(delete_form) }}
                 <input type="submit" value="Borrar" class="btn btn-danger">

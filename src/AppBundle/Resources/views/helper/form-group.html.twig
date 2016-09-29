@@ -1,0 +1,17 @@
+<div class="form-group">
+    {{ form_label(campo, null, {'label_attr': {'class': 'control-label col-sm-1'}}) }}
+    <div class="col-sm-11">
+        <div class="input-group">
+            {% if icono is defined %}
+                {#<span class="input-group-addon"><span class="glyphicon glyphicon-{{ icono }}"></span></span>#}
+                <span class="input-group-addon"><span class="glyphicon glyphicon-euro"></span></span>
+            {% endif %}
+
+            {{ form_widget(campo, {'attr': {'class': 'form-control'}}) }}
+
+            {#{% if icono is defined %}
+                <span class="input-group-addon"><span class="fa fa-{{ icono }}"></span></span>
+            {% endif %}#}
+        </div>
+    </div>
+</div>
