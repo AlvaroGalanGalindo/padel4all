@@ -24,6 +24,7 @@ class PistaType extends AbstractType
             ->add('horario')
             ->add('precio')
             ->add('tipo')
+            ->add('user')
         ;
     }
     

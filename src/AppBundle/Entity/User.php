@@ -35,9 +35,15 @@ class User extends BaseUser
      */
     protected $telefono;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Pista", mappedBy="user")
+     */
+    protected $pistas;
+
     public function __construct()
     {
         parent::__construct();
+        $this->pistas = new ArrayCollection();
     }
 
 
@@ -108,5 +114,38 @@ class User extends BaseUser
     public function getTelefono()
     {
         return $this->telefono;
+    }
+
+    /**
+     * Add pistas
+     *
+     * @param \AppBundle\Entity\Pista $pistas
+     * @return Pista
+     */
+    public function addPista(\AppBundle\Entity\Pista $pistas)
+    {
+        $this->pistas[] = $pistas;
+
+        return $this;
+    }
+
+    /**
+     * Remove pistas
+     *
+     * @param \AppBundle\Entity\Pista $pistas
+     */
+    public function removePista(\AppBundle\Entity\Pista $pistas)
+    {
+        $this->pistas->removeElement($pistas);
+    }
+
+    /**
+     * Get pistas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPistas()
+    {
+        return $this->pistas;
     }
 }

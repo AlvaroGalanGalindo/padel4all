@@ -87,6 +87,15 @@ class Pista
     protected $tipo;
 
     /**
+     * @ORM\ManyToOne(
+     *      targetEntity="AppBundle\Entity\User",
+     *      inversedBy="pistas"
+     * )
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $user;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -301,5 +310,28 @@ class Pista
     public function getTipo()
     {
         return $this->tipo;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Pista
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }
