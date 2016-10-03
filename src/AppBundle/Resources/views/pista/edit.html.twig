@@ -19,6 +19,10 @@
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.horario, 'icono': 'clock'} %}
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.precio, 'icono': 'euro'} %}
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.tipo, 'icono': 'lock'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.pared, 'icono': 'lock'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.cubierta, 'icono': 'lock'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.climatizada, 'icono': 'lock'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.puertas, 'icono': 'lock'} %}
 
                 {{ form_widget(edit_form) }}
 

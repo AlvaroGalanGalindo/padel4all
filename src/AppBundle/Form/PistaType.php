@@ -25,6 +25,10 @@ class PistaType extends AbstractType
             ->add('horario')
             ->add('precio')
             ->add('tipo')
+            ->add('pared')
+            ->add('cubierta')
+            ->add('climatizada')
+            ->add('puertas', 'checkbox', array('label' => 'Permite salida por puertas'))
         ;
     }
     

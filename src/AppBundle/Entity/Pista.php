@@ -78,6 +78,27 @@ class Pista
     private $precio;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="climatizada", type="boolean")
+     */
+    private $climatizada;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="cubierta", type="boolean")
+     */
+    private $cubierta;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="puertas", type="boolean")
+     */
+    private $puertas;
+
+    /**
      * @ORM\ManyToOne(
      *      targetEntity="AppBundle\Entity\PistaTipo",
      *      inversedBy="pistas"
@@ -85,6 +106,15 @@ class Pista
      * @ORM\JoinColumn(onDelete="CASCADE")
      */
     protected $tipo;
+
+    /**
+     * @ORM\ManyToOne(
+     *      targetEntity="AppBundle\Entity\PistaPared",
+     *      inversedBy="pistas"
+     * )
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $pared;
 
     /**
      * @ORM\ManyToOne(
@@ -290,6 +320,75 @@ class Pista
     }
 
     /**
+     * Set climatizada
+     *
+     * @param boolean $climatizada
+     * @return Partido
+     */
+    public function setClimatizada($climatizada)
+    {
+        $this->climatizada = $climatizada;
+
+        return $this;
+    }
+
+    /**
+     * Get climatizada
+     *
+     * @return boolean
+     */
+    public function getClimatizada()
+    {
+        return $this->climatizada;
+    }
+
+    /**
+     * Set cubierta
+     *
+     * @param boolean $cubierta
+     * @return Partido
+     */
+    public function setCubierta($cubierta)
+    {
+        $this->cubierta = $cubierta;
+
+        return $this;
+    }
+
+    /**
+     * Get cubierta
+     *
+     * @return boolean
+     */
+    public function getCubierta()
+    {
+        return $this->cubierta;
+    }
+
+    /**
+     * Set puertas
+     *
+     * @param boolean $puertas
+     * @return Partido
+     */
+    public function setPuertas($puertas)
+    {
+        $this->puertas = $puertas;
+
+        return $this;
+    }
+
+    /**
+     * Get puertas
+     *
+     * @return boolean
+     */
+    public function getPuertas()
+    {
+        return $this->puertas;
+    }
+
+    /**
      * Set tipo
      *
      * @param \AppBundle\Entity\PistaTipo $tipo
@@ -310,6 +409,29 @@ class Pista
     public function getTipo()
     {
         return $this->tipo;
+    }
+
+    /**
+     * Set pared
+     *
+     * @param \AppBundle\Entity\PistaPared $pared
+     * @return Pista
+     */
+    public function setPared(\AppBundle\Entity\PistaPared $pared = null)
+    {
+        $this->pared = $pared;
+
+        return $this;
+    }
+
+    /**
+     * Get pared
+     *
+     * @return \AppBundle\Entity\PistaPared
+     */
+    public function getPared()
+    {
+        return $this->pared;
     }
 
     /**
