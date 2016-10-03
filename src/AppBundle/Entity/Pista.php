@@ -126,6 +126,11 @@ class Pista
     protected $user;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="pista")
+     */
+    protected $partidos;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -455,5 +460,38 @@ class Pista
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Add partidos
+     *
+     * @param \AppBundle\Entity\Partido $partido
+     * @return PistaTipo
+     */
+    public function addPartido(\AppBundle\Entity\Partido $partido)
+    {
+        $this->partidos[] = $partido;
+
+        return $this;
+    }
+
+    /**
+     * Remove partidos
+     *
+     * @param \AppBundle\Entity\Partido $partido
+     */
+    public function removePartido(\AppBundle\Entity\Partido $partido)
+    {
+        $this->partidos->removeElement($partido);
+    }
+
+    /**
+     * Get partidos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPartidos()
+    {
+        return $this->partidos;
     }
 }
