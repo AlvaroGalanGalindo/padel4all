@@ -46,6 +46,10 @@ class User extends BaseUser
         $this->pistas = new ArrayCollection();
     }
 
+    public function __toString() {
+        return $this->username." (".$this->nombre." ".$this->apellidos.")";
+    }
+
 
     /**
      * Set nombre

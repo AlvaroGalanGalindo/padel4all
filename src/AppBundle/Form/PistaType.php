@@ -15,16 +15,16 @@ class PistaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('user')
             ->add('nombre')
             ->add('propietario')
-            ->add('direccion')
+            ->add('direccion', 'text', array('label' => 'Dirección'))
             ->add('localidad')
             ->add('provincia')
-            ->add('telefono')
+            ->add('telefono', 'text', array('label' => 'Teléfono'))
             ->add('horario')
             ->add('precio')
             ->add('tipo')
-            ->add('user')
         ;
     }
     

@@ -9,6 +9,7 @@
             {{ form_start(edit_form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
                 {{ form_errors(edit_form) }}
 
+                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.user, 'icono': 'lock'} %}
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.nombre, 'icono': 'pencil'} %}
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.propietario, 'icono': 'user'} %}
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.direccion, 'icono': 'map-marker'} %}
@@ -18,7 +19,6 @@
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.horario, 'icono': 'clock'} %}
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.precio, 'icono': 'euro'} %}
                 {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.tipo, 'icono': 'lock'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.user, 'icono': 'lock'} %}
 
                 {{ form_widget(edit_form) }}
 
