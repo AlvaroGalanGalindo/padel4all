@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Partido list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fecha</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for partido in partidos %}
+            <tr>
+                <td><a href="{{ path('partidos_show', { 'id': partido.id }) }}">{{ partido.id }}</a></td>
+                <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('partidos_show', { 'id': partido.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('partidos_edit', { 'id': partido.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('partidos_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}
