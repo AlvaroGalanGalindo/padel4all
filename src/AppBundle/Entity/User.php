@@ -40,10 +40,35 @@ class User extends BaseUser
      */
     protected $pistas;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="p1j1")
+     */
+    protected $partidos_p1j1;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="p1j2")
+     */
+    protected $partidos_p1j2;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="p2j1")
+     */
+    protected $partidos_p2j1;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="p2j2")
+     */
+    protected $partidos_p2j2;
+
+
     public function __construct()
     {
         parent::__construct();
         $this->pistas = new ArrayCollection();
+        $this->partidos_p1j1 = new ArrayCollection();
+        $this->partidos_p1j2 = new ArrayCollection();
+        $this->partidos_p2j1 = new ArrayCollection();
+        $this->partidos_p2j2 = new ArrayCollection();
     }
 
     public function __toString() {
@@ -151,5 +176,137 @@ class User extends BaseUser
     public function getPistas()
     {
         return $this->pistas;
+    }
+
+    /**
+     * Add partidos_p1j1
+     *
+     * @param \AppBundle\Entity\Partido $partidosP1j1
+     * @return User
+     */
+    public function addPartidosP1j1(\AppBundle\Entity\Partido $partidosP1j1)
+    {
+        $this->partidos_p1j1[] = $partidosP1j1;
+
+        return $this;
+    }
+
+    /**
+     * Remove partidos_p1j1
+     *
+     * @param \AppBundle\Entity\Partido $partidosP1j1
+     */
+    public function removePartidosP1j1(\AppBundle\Entity\Partido $partidosP1j1)
+    {
+        $this->partidos_p1j1->removeElement($partidosP1j1);
+    }
+
+    /**
+     * Get partidos_p1j1
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPartidosP1j1()
+    {
+        return $this->partidos_p1j1;
+    }
+
+    /**
+     * Add partidos_p1j2
+     *
+     * @param \AppBundle\Entity\Partido $partidosP1j2
+     * @return User
+     */
+    public function addPartidosP1j2(\AppBundle\Entity\Partido $partidosP1j2)
+    {
+        $this->partidos_p1j2[] = $partidosP1j2;
+
+        return $this;
+    }
+
+    /**
+     * Remove partidos_p1j2
+     *
+     * @param \AppBundle\Entity\Partido $partidosP1j2
+     */
+    public function removePartidosP1j2(\AppBundle\Entity\Partido $partidosP1j2)
+    {
+        $this->partidos_p1j2->removeElement($partidosP1j2);
+    }
+
+    /**
+     * Get partidos_p1j2
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPartidosP1j2()
+    {
+        return $this->partidos_p1j2;
+    }
+
+    /**
+     * Add partidos_p2j1
+     *
+     * @param \AppBundle\Entity\Partido $partidosP2j1
+     * @return User
+     */
+    public function addPartidosP2j1(\AppBundle\Entity\Partido $partidosP2j1)
+    {
+        $this->partidos_p2j1[] = $partidosP2j1;
+
+        return $this;
+    }
+
+    /**
+     * Remove partidos_p2j1
+     *
+     * @param \AppBundle\Entity\Partido $partidosP2j1
+     */
+    public function removePartidosP2j1(\AppBundle\Entity\Partido $partidosP2j1)
+    {
+        $this->partidos_p2j1->removeElement($partidosP2j1);
+    }
+
+    /**
+     * Get partidos_p2j1
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPartidosP2j1()
+    {
+        return $this->partidos_p2j1;
+    }
+
+    /**
+     * Add partidos_p2j2
+     *
+     * @param \AppBundle\Entity\Partido $partidosP2j2
+     * @return User
+     */
+    public function addPartidosP2j2(\AppBundle\Entity\Partido $partidosP2j2)
+    {
+        $this->partidos_p2j2[] = $partidosP2j2;
+
+        return $this;
+    }
+
+    /**
+     * Remove partidos_p2j2
+     *
+     * @param \AppBundle\Entity\Partido $partidosP2j2
+     */
+    public function removePartidosP2j2(\AppBundle\Entity\Partido $partidosP2j2)
+    {
+        $this->partidos_p2j2->removeElement($partidosP2j2);
+    }
+
+    /**
+     * Get partidos_p2j2
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getPartidosP2j2()
+    {
+        return $this->partidos_p2j2;
     }
 }

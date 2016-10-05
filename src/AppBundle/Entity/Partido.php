@@ -37,6 +37,42 @@ class Partido
      */
     protected $pista;
 
+    /**
+     * @ORM\ManyToOne(
+     *      targetEntity="AppBundle\Entity\User",
+     *      inversedBy="partidos_p1j1"
+     * )
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $p1j1;
+
+    /**
+     * @ORM\ManyToOne(
+     *      targetEntity="AppBundle\Entity\User",
+     *      inversedBy="partidos_p1j2"
+     * )
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $p1j2;
+
+    /**
+     * @ORM\ManyToOne(
+     *      targetEntity="AppBundle\Entity\User",
+     *      inversedBy="partidos_p2j1"
+     * )
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $p2j1;
+
+    /**
+     * @ORM\ManyToOne(
+     *      targetEntity="AppBundle\Entity\User",
+     *      inversedBy="partidos_p2j2"
+     * )
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $p2j2;
+
 
     /**
      * Get id
@@ -92,5 +128,97 @@ class Partido
     public function getPista()
     {
         return $this->pista;
+    }
+
+    /**
+     * Set p1j1
+     *
+     * @param \AppBundle\Entity\User $p1j1
+     * @return Partido
+     */
+    public function setP1j1(\AppBundle\Entity\User $p1j1 = null)
+    {
+        $this->p1j1 = $p1j1;
+
+        return $this;
+    }
+
+    /**
+     * Get p1j1
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getP1j1()
+    {
+        return $this->p1j1;
+    }
+
+    /**
+     * Set p1j2
+     *
+     * @param \AppBundle\Entity\User $p1j2
+     * @return Partido
+     */
+    public function setP1j2(\AppBundle\Entity\User $p1j2 = null)
+    {
+        $this->p1j2 = $p1j2;
+
+        return $this;
+    }
+
+    /**
+     * Get p1j2
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getP1j2()
+    {
+        return $this->p1j2;
+    }
+
+    /**
+     * Set p2j1
+     *
+     * @param \AppBundle\Entity\User $p2j1
+     * @return Partido
+     */
+    public function setP2j1(\AppBundle\Entity\User $p2j1 = null)
+    {
+        $this->p2j1 = $p2j1;
+
+        return $this;
+    }
+
+    /**
+     * Get p2j1
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getP2j1()
+    {
+        return $this->p2j1;
+    }
+
+    /**
+     * Set p2j2
+     *
+     * @param \AppBundle\Entity\User $p2j2
+     * @return Partido
+     */
+    public function setP2j2(\AppBundle\Entity\User $p2j2 = null)
+    {
+        $this->p2j2 = $p2j2;
+
+        return $this;
+    }
+
+    /**
+     * Get p2j2
+     *
+     * @return \AppBundle\Entity\User 
+     */
+    public function getP2j2()
+    {
+        return $this->p2j2;
     }
 }
