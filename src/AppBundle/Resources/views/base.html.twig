@@ -3,12 +3,18 @@
 {% block head_style %}
 
     {% stylesheets
-        '@AppBundle/Resources/public/less/custom.less'
+    '@AppBundle/Resources/public/less/custom.less'
     %}
-        <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+    <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
 
-    <script type="text/javascript" src="{{ asset('bundles/app/js/jquery-3.1.1.min.js') }}"></script>
+
+    {% javascripts
+    'bundles/app/js/jquery-3.1.1.min.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
 
 {% endblock head_style %}
 

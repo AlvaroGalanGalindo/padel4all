@@ -130,6 +130,17 @@ class Pista
      */
     protected $partidos;
 
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->partidos = new ArrayCollection();
+    }
+
+    public function __toString() {
+        return $this->nombre . " (". $this->propietario . ")";
+    }
+
     /**
      * Get id
      *

@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class PartidoType extends AbstractType
 {
     /**
@@ -15,7 +16,7 @@ class PartidoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('fecha', 'datetime')
+            ->add('fecha', 'datetime', array('date_widget' => "single_text", 'time_widget' => "single_text"))
             ->add('pista')
             ->add('p1j1')
             ->add('p1j2')
