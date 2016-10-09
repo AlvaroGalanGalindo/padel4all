@@ -221,4 +221,9 @@ class Partido
     {
         return $this->p2j2;
     }
+
+    public function UserInPartido(User $user) {
+        return $this->p1j1 == $user || $this->p1j2 == $user || $this->p2j1 == $user || $this->p2j2 == $user;
+    }
+
 }

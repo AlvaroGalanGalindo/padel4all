@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
 
 {% block body %}
     <h1>Partido</h1>
@@ -13,8 +13,29 @@
                 <th>Fecha</th>
                 <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
+            <tr>
+                <th>p1j1</th>
+                <td>{{ partido.p1j1 }}</td>
+            </tr><tr>
+                <th>p1j2</th>
+                <td>{{ partido.p1j2 }}</td>
+            </tr><tr>
+                <th>p2j1</th>
+                <td>{{ partido.p2j1 }}</td>
+            </tr><tr>
+                <th>p2j2</th>
+                <td>{{ partido.p2j2 }}</td>
+            </tr>
         </tbody>
     </table>
+
+    <row>
+        <div id="p1j1" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
+        <div id="p1j2" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
+    </row><row>
+        <div id="p2j1" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
+        <div id="p2j2" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
+    </row>
 
     <ul>
         <li>
@@ -29,4 +50,21 @@
             {{ form_end(delete_form) }}
         </li>
     </ul>
+    <script>
+        function setJugadorPartido(posObj){
+            posId = posObj.parentNode.id;
+            $.post('{{ path('ajax_usermatch') }}',
+                { partidoId: {{ partido.id }}, posicion: posId },
+                function(response){
+                    if(response.success){
+                        $("#"+posId).html(response.jugador);
+                    }
+                    alert(response.mensaje);
+                }, "json");
+        }
+
+        $(document).ready(function() {
+            $('button').on('click', function(){setJugadorPartido();});
+        });
+    </script>
 {% endblock %}

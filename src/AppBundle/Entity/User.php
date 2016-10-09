@@ -72,6 +72,10 @@ class User extends BaseUser
     }
 
     public function __toString() {
+        return $this->getNickNombre();
+    }
+
+    public function getNickNombre() {
         return $this->username." (".$this->nombre." ".$this->apellidos.")";
     }
 
