@@ -217,4 +217,27 @@ class Resultado
     {
         return $this->set3p2;
     }
+
+    /**
+     * Set partido
+     *
+     * @param \AppBundle\Entity\Partido $partido
+     * @return Resultado
+     */
+    public function setPartido(\AppBundle\Entity\Partido $partido = null)
+    {
+        $this->partido = $partido;
+
+        return $this;
+    }
+
+    /**
+     * Get partido
+     *
+     * @return \AppBundle\Entity\Partido 
+     */
+    public function getPartido()
+    {
+        return $this->partido;
+    }
 }

@@ -37,6 +37,22 @@
         <div id="p2j2" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
     </row>
 
+    <br/><br/><br/>
+
+    <h4>Resultado</h4>
+    {% if partido.resultado is empty %}
+        <a href="{{ path('resultados_new', {'id_partido': partido.id }) }}">Introducir resultados</a>
+    {% else %}
+        <table>
+            <tr><td>{{ partido.resultado.set1p1 }}</td><td>-</td><td>{{ partido.resultado.set1p2 }}</td></tr>
+            <tr><td>{{ partido.resultado.set2p1 }}</td><td>-</td><td>{{ partido.resultado.set2p2 }}</td></tr>
+            <tr><td>{{ partido.resultado.set3p1 }}</td><td>-</td><td>{{ partido.resultado.set3p2 }}</td></tr>
+        </table>
+        <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
+    {% endif %}
+
+    <br/><br/><br/>
+
     <ul>
         <li>
             <a href="{{ path('partidos_index') }}">Back to the list</a>

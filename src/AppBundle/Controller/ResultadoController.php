@@ -36,17 +36,21 @@ class ResultadoController extends Controller
     /**
      * Creates a new Resultado entity.
      *
-     * @Route("/new", name="resultados_new")
+     * @Route("/new/{id_partido}", name="resultados_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $resultado = new Resultado();
+        $em = $this->getDoctrine()->getManager();
+
+        $partido = $em->getRepository('AppBundle:Partido')->find($request->get('id_partido'));
+        $resultado->setPartido($partido);
+
         $form = $this->createForm('AppBundle\Form\ResultadoType', $resultado);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $em->persist($resultado);
             $em->flush();
 

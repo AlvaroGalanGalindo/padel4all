@@ -79,6 +79,10 @@ class Partido
     private $resultado;
 
 
+    public function __toString() {
+        return "Pista: " . $this->pista . " - " . $this->getFormatFecha();
+    }
+
 
     /**
      * Get id
@@ -111,6 +115,16 @@ class Partido
     public function getFecha()
     {
         return $this->fecha;
+    }
+
+    /**
+     * Get fecha
+     *
+     * @return string
+     */
+    public function getFormatFecha()
+    {
+        return $this->fecha->format('d/m/Y H:i');
     }
 
     /**
