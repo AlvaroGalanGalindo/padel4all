@@ -73,6 +73,12 @@ class Partido
      */
     protected $p2j2;
 
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Resultado", mappedBy="partido")
+     */
+    private $resultado;
+
+
 
     /**
      * Get id
@@ -226,4 +232,27 @@ class Partido
         return $this->p1j1 == $user || $this->p1j2 == $user || $this->p2j1 == $user || $this->p2j2 == $user;
     }
 
+
+    /**
+     * Set resultado
+     *
+     * @param \AppBundle\Entity\Resultado $resultado
+     * @return Partido
+     */
+    public function setResultado(\AppBundle\Entity\Resultado $resultado = null)
+    {
+        $this->resultado = $resultado;
+
+        return $this;
+    }
+
+    /**
+     * Get resultado
+     *
+     * @return \AppBundle\Entity\Resultado 
+     */
+    public function getResultado()
+    {
+        return $this->resultado;
+    }
 }

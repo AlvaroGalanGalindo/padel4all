@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Resultado</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ resultado.id }}</td>
+            </tr>
+            <tr>
+                <th>Set1p1</th>
+                <td>{{ resultado.set1p1 }}</td>
+            </tr>
+            <tr>
+                <th>Set1p2</th>
+                <td>{{ resultado.set1p2 }}</td>
+            </tr>
+            <tr>
+                <th>Set2p1</th>
+                <td>{{ resultado.set2p1 }}</td>
+            </tr>
+            <tr>
+                <th>Set2p2</th>
+                <td>{{ resultado.set2p2 }}</td>
+            </tr>
+            <tr>
+                <th>Set3p1</th>
+                <td>{{ resultado.set3p1 }}</td>
+            </tr>
+            <tr>
+                <th>Set3p2</th>
+                <td>{{ resultado.set3p2 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('resultados_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}
