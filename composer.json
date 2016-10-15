@@ -27,12 +27,12 @@
         "symfony/assetic-bundle": "^2.8",
         "mopa/composer-bridge": "^1.5",
         "raulfraile/ladybug-bundle": "^1.0",
-        "fzaninotto/faker": "^1.6"
+        "fzaninotto/faker": "^1.6",
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
-        "symfony/phpunit-bridge": "~2.7",
-        "doctrine/doctrine-fixtures-bundle": "^2.3"
+        "symfony/phpunit-bridge": "~2.7"
     },
     "scripts": {
         "symfony-scripts": [
