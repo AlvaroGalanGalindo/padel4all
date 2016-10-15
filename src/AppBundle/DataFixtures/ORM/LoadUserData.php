@@ -23,7 +23,6 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
 
     function load(ObjectManager $manager)
     {
-        // USUARIOS
         $userManager = $this->container->get('fos_user.user_manager');
 
         $entidad = $userManager->createUser();
