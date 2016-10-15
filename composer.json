@@ -26,11 +26,13 @@
         "twbs/bootstrap": "^3.3",
         "symfony/assetic-bundle": "^2.8",
         "mopa/composer-bridge": "^1.5",
-        "raulfraile/ladybug-bundle": "^1.0"
+        "raulfraile/ladybug-bundle": "^1.0",
+        "fzaninotto/faker": "^1.6"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
-        "symfony/phpunit-bridge": "~2.7"
+        "symfony/phpunit-bridge": "~2.7",
+        "doctrine/doctrine-fixtures-bundle": "^2.3"
     },
     "scripts": {
         "symfony-scripts": [
