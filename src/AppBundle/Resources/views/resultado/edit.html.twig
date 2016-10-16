@@ -1,21 +1,33 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <h1>Resultado edit</h1>
+<div class="container">
+    <div class="content">
+        <div class="page-header"><h2>Edición de resultado</h2></div>
 
-    {{ form_start(edit_form) }}
+        {{ form_start(edit_form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
+        {{ form_errors(edit_form) }}
+
+        {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.partido, 'icono': 'lock'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.set1p1, 'icono': 'pencil'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.set1p2, 'icono': 'user'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.set2p1, 'icono': 'map-marker'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.set2p2, 'icono': 'map-marker'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.set3p1, 'icono': 'map-marker'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.set3p2, 'icono': 'map-marker'} %}
+
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
-    {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('resultados_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+        <div class="pull-right">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+            <a href="{{ path('resultados_index') }}" class="btn btn-info">Volver al listado</a>
+        </div>
+        {{ form_end(edit_form) }}
+
+        {{ form_start(delete_form) }}
+            <input type="submit" value="Borrar" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    </div>
+</div>
+
 {% endblock %}

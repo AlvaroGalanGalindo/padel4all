@@ -1,86 +1,95 @@
 {% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <h1>Partido</h1>
+<div class="container">
+    <div class="content">
+        <div class="page-header"><h2>Detalles de partido</h2></div>
 
-    <table>
-        <tbody>
+        <table>
+            <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ partido.id }}</td>
+                <th>Pista</th>
+                <td>{{ partido.pista.propietario }} - {{ partido.pista.nombre }}</td>
             </tr>
             <tr>
                 <th>Fecha</th>
                 <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
             </tr>
-            <tr>
-                <th>p1j1</th>
-                <td>{{ partido.p1j1 }}</td>
-            </tr><tr>
-                <th>p1j2</th>
-                <td>{{ partido.p1j2 }}</td>
-            </tr><tr>
-                <th>p2j1</th>
-                <td>{{ partido.p2j1 }}</td>
-            </tr><tr>
-                <th>p2j2</th>
-                <td>{{ partido.p2j2 }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <row>
-        <div id="p1j1" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
-        <div id="p1j2" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
-    </row><row>
-        <div id="p2j1" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
-        <div id="p2j2" class="col-sm-6"><a href="#" onclick="setJugadorPartido(this);">ninguno</a></div>
-    </row>
-
-    <br/><br/><br/>
-
-    <h4>Resultado</h4>
-    {% if partido.resultado is empty %}
-        <a href="{{ path('resultados_new', {'id_partido': partido.id }) }}">Introducir resultados</a>
-    {% else %}
-        <table>
-            <tr><td>{{ partido.resultado.set1p1 }}</td><td>-</td><td>{{ partido.resultado.set1p2 }}</td></tr>
-            <tr><td>{{ partido.resultado.set2p1 }}</td><td>-</td><td>{{ partido.resultado.set2p2 }}</td></tr>
-            <tr><td>{{ partido.resultado.set3p1 }}</td><td>-</td><td>{{ partido.resultado.set3p2 }}</td></tr>
+            </tbody>
         </table>
-        <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
-    {% endif %}
+        <br/>
+        <row>
+            <div id="p1j1" class="col-sm-6">
+                {% if partido.p1j1 is not empty %}
+                    {{ partido.p1j1.nickNombre }}
+                {% else %}
+                    <a href="#" onclick="setJugadorPartido(this);">¡Apúntate!</a>
+                {% endif %}
+            </div>
+            <div id="p1j2" class="col-sm-6">
+                {% if partido.p1j2 is not empty %}
+                    {{ partido.p1j2.nickNombre }}
+                {% else %}
+                    <a href="#" onclick="setJugadorPartido(this);">¡Apúntate!</a>
+                {% endif %}
+            </div>
+        </row><row>
+            <div id="p2j1" class="col-sm-6">
+                {% if partido.p2j1 is not empty %}
+                    {{ partido.p2j1.nickNombre }}
+                {% else %}
+                    <a href="#" onclick="setJugadorPartido(this);">¡Apúntate!</a>
+                {% endif %}
+            </div>
+            <div id="p2j2" class="col-sm-6">
+                {% if partido.p2j2 is not empty %}
+                    {{ partido.p2j2.nickNombre }}
+                {% else %}
+                    <a href="#" onclick="setJugadorPartido(this);">¡Apúntate!</a>
+                {% endif %}
+            </div>
+        </row>
 
-    <br/><br/><br/>
+        <br/><br/><br/>
 
-    <ul>
-        <li>
-            <a href="{{ path('partidos_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('partidos_edit', { 'id': partido.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
-    <script>
-        function setJugadorPartido(posObj){
-            posId = posObj.parentNode.id;
-            $.post('{{ path('ajax_usermatch') }}',
-                { partidoId: {{ partido.id }}, posicion: posId },
-                function(response){
-                    if(response.success){
-                        $("#"+posId).html(response.jugador);
-                    }
-                    alert(response.mensaje);
-                }, "json");
-        }
+        <h4>Resultado</h4>
+        {% if partido.resultado is empty %}
+            <a href="{{ path('resultados_new', {'id_partido': partido.id }) }}">Introducir resultados</a>
+        {% else %}
+            <table>
+                <tr><td>{{ partido.resultado.set1p1 }}</td><td>-</td><td>{{ partido.resultado.set1p2 }}</td></tr>
+                <tr><td>{{ partido.resultado.set2p1 }}</td><td>-</td><td>{{ partido.resultado.set2p2 }}</td></tr>
+                <tr><td>{{ partido.resultado.set3p1 }}</td><td>-</td><td>{{ partido.resultado.set3p2 }}</td></tr>
+            </table>
+            <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
+        {% endif %}
 
-        $(document).ready(function() {
-            $('button').on('click', function(){setJugadorPartido();});
-        });
-    </script>
+        <br/><br/><br/>
+
+        {{ form_start(delete_form) }}
+            <input type="submit" value="Borrar" class="btn btn-danger">
+            <a href="{{ path('partidos_index') }}" class="btn btn-info">Volver al listado</a>
+            <a href="{{ path('partidos_edit', { 'id': partido.id }) }}" class="btn btn-success">Editar</a>
+        {{ form_end(delete_form) }}
+    </div>
+</div>
+
+
+<script>
+    function setJugadorPartido(posObj){
+        posId = posObj.parentNode.id;
+        $.post('{{ path('ajax_usermatch') }}',
+            { partidoId: {{ partido.id }}, posicion: posId },
+            function(response){
+                if(response.success){
+                    $("#"+posId).html(response.jugador);
+                }
+                alert(response.mensaje);
+            }, "json");
+    }
+
+    $(document).ready(function() {
+        $('button').on('click', function(){setJugadorPartido();});
+    });
+</script>
 {% endblock %}

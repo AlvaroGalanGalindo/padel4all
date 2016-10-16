@@ -18,17 +18,17 @@ class PistaType extends AbstractType
             ->add('user')
             ->add('nombre')
             ->add('propietario')
-            ->add('direccion', 'text', array('label' => 'Dirección'))
+            ->add('direccion', 'text', array('label' => 'Dirección', 'required' => false))
             ->add('localidad')
             ->add('provincia')
-            ->add('telefono', 'text', array('label' => 'Teléfono'))
+            ->add('telefono', 'text', array('label' => 'Teléfono', 'required' => false))
             ->add('horario')
             ->add('precio')
             ->add('tipo')
             ->add('pared')
             ->add('cubierta')
             ->add('climatizada')
-            ->add('puertas', 'checkbox', array('label' => 'Permite salida por puertas'))
+            ->add('puertas', 'checkbox', array('label' => 'Permite salida por puertas', 'required' => false))
         ;
     }
     

@@ -1,52 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
+
+{% set p1j1 = resultado.partido.p1j1 is empty ? "sin jugador" : resultado.partido.p1j1.username %}
+{% set p1j2 = resultado.partido.p1j2 is empty ? "sin jugador" : resultado.partido.p1j2.username %}
+{% set p2j1 = resultado.partido.p2j1 is empty ? "sin jugador" : resultado.partido.p2j1.username %}
+{% set p2j2 = resultado.partido.p2j2 is empty ? "sin jugador" : resultado.partido.p2j2.username %}
 
 {% block body %}
-    <h1>Resultado</h1>
+<div class="container">
+    <div class="content">
+        <div class="page-header"><h2>Detalles del resultado</h2></div>
+    </div>
 
-    <table>
+    <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ resultado.id }}</td>
-            </tr>
-            <tr>
-                <th>Set1p1</th>
-                <td>{{ resultado.set1p1 }}</td>
-            </tr>
-            <tr>
-                <th>Set1p2</th>
-                <td>{{ resultado.set1p2 }}</td>
-            </tr>
-            <tr>
-                <th>Set2p1</th>
-                <td>{{ resultado.set2p1 }}</td>
-            </tr>
-            <tr>
-                <th>Set2p2</th>
-                <td>{{ resultado.set2p2 }}</td>
-            </tr>
-            <tr>
-                <th>Set3p1</th>
-                <td>{{ resultado.set3p1 }}</td>
-            </tr>
-            <tr>
-                <th>Set3p2</th>
-                <td>{{ resultado.set3p2 }}</td>
-            </tr>
+        <tr>
+            <th>{{ p1j1 }} - {{ p1j2 }}</th>
+            <th>vs.</th>
+            <th>{{ p2j1 }} - {{ p2j2 }}</th>
+        </tr>
+        <tr>
+            <td>{{ resultado.set1p1 }}</td>
+            <td>SET 1</td>
+            <td>{{ resultado.set1p2 }}</td>
+        </tr>
+        <tr>
+            <td>{{ resultado.set2p1 }}</td>
+            <td>SET 2</td>
+            <td>{{ resultado.set2p2 }}</td>
+        </tr>
+        <tr>
+            <td>{{ resultado.set3p1 }}</td>
+            <td>SET 3</td>
+            <td>{{ resultado.set3p2 }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('resultados_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <br/><br/><br/>
+
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Borrar" class="btn btn-danger">
+        <a href="{{ path('resultados_index') }}" class="btn btn-info">Volver al listado</a>
+        <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn btn-success">Editar</a>
+    {{ form_end(delete_form) }}
+</div>
+
 {% endblock %}

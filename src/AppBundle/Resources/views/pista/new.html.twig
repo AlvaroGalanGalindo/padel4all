@@ -1,16 +1,34 @@
 {% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <h1>Pista creation</h1>
+    <div class="container">
+        <div class="content">
+            <div class="page-header"><h2>Nueva pista</h2></div>
+            {{ form_start(form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
+            {{ form_errors(form) }}
 
-    {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.user, 'icono': 'lock'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.nombre, 'icono': 'pencil'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.propietario, 'icono': 'user'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.direccion, 'icono': 'map-marker'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.localidad, 'icono': 'map-marker'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.provincia, 'icono': 'map-marker'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.telefono, 'icono': 'iphone'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.horario, 'icono': 'clock'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.precio, 'icono': 'euro'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.tipo, 'icono': 'lock'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.pared, 'icono': 'lock'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.cubierta, 'icono': 'lock'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.climatizada, 'icono': 'lock'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.puertas, 'icono': 'lock'} %}
 
-    <ul>
-        <li>
-            <a href="{{ path('pista_index') }}">Back to the list</a>
-        </li>
-    </ul>
+            {{ form_widget(form) }}
+
+            <div class="pull-right">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+                <a href="{{ path('pista_index') }}" class="btn btn-info">Volver al listado</a>
+            </div>
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}

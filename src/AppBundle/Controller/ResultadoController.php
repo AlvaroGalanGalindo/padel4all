@@ -54,7 +54,7 @@ class ResultadoController extends Controller
             $em->persist($resultado);
             $em->flush();
 
-            return $this->redirectToRoute('resultados_show', array('id' => $resultado->getId()));
+            return $this->redirectToRoute('partidos_show', array('id' => $resultado->getPartido()->getId()));
         }
 
         return $this->render('@App/resultado/new.html.twig', array(
@@ -96,7 +96,7 @@ class ResultadoController extends Controller
             $em->persist($resultado);
             $em->flush();
 
-            return $this->redirectToRoute('resultados_edit', array('id' => $resultado->getId()));
+            return $this->redirectToRoute('partidos_show', array('id' => $resultado->getPartido()->getId()));
         }
 
         return $this->render('@App/resultado/edit.html.twig', array(
@@ -123,7 +123,7 @@ class ResultadoController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('resultados_index');
+        return $this->redirectToRoute('partidos_show', array('id' => $resultado->getPartido()->getId()));
     }
 
     /**

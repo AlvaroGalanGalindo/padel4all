@@ -269,4 +269,34 @@ class Partido
     {
         return $this->resultado;
     }
+
+    /**
+     * Get NumJugadores
+     *
+     * @return integer
+     */
+    public function getNumJugadores()
+    {
+        $numJugadores = 0;
+        if (!empty($this->p1j1)) { $numJugadores++; }
+        if (!empty($this->p1j2)) { $numJugadores++; }
+        if (!empty($this->p2j1)) { $numJugadores++; }
+        if (!empty($this->p2j2)) { $numJugadores++; }
+        return $numJugadores;
+    }
+
+    /**
+     * Get Jugadores
+     *
+     * @return array
+     */
+    public function getJugadores()
+    {
+        $jugadores = [];
+        if (!empty($this->p1j1)) { $jugadores[] = $this->getP1j1()->getUsername(); }
+        if (!empty($this->p1j2)) { $jugadores[] = $this->getP1j2()->getUsername(); }
+        if (!empty($this->p2j1)) { $jugadores[] = $this->getP2j1()->getUsername(); }
+        if (!empty($this->p2j2)) { $jugadores[] = $this->getP2j2()->getUsername(); }
+        return $jugadores;
+    }
 }

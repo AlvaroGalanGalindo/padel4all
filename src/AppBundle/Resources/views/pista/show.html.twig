@@ -1,60 +1,55 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <h1>Pista</h1>
+<div class="container">
+    <div class="content">
+        <div class="page-header"><h2>Detalles de la pista</h2></div>
+    </div>
 
-    <table>
+    <table class="table">
         <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ pistum.id }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ pistum.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Propietario</th>
-                <td>{{ pistum.propietario }}</td>
-            </tr>
-            <tr>
-                <th>Direccion</th>
-                <td>{{ pistum.direccion }}</td>
-            </tr>
-            <tr>
-                <th>Localidad</th>
-                <td>{{ pistum.localidad }}</td>
-            </tr>
-            <tr>
-                <th>Provincia</th>
-                <td>{{ pistum.provincia }}</td>
-            </tr>
-            <tr>
-                <th>Telefono</th>
-                <td>{{ pistum.telefono }}</td>
-            </tr>
-            <tr>
-                <th>Horario</th>
-                <td>{{ pistum.horario }}</td>
-            </tr>
-            <tr>
-                <th>Precio</th>
-                <td>{{ pistum.precio }}</td>
-            </tr>
+        <tr>
+            <th>Nombre</th>
+            <td>{{ pistum.nombre }}</td>
+        </tr>
+        <tr>
+            <th>Propietario</th>
+            <td>{{ pistum.propietario }}</td>
+        </tr>
+        <tr>
+            <th>Direccion</th>
+            <td>{{ pistum.direccion }}</td>
+        </tr>
+        <tr>
+            <th>Localidad</th>
+            <td>{{ pistum.localidad }}</td>
+        </tr>
+        <tr>
+            <th>Provincia</th>
+            <td>{{ pistum.provincia }}</td>
+        </tr>
+        <tr>
+            <th>Telefono</th>
+            <td>{{ pistum.telefono }}</td>
+        </tr>
+        <tr>
+            <th>Horario</th>
+            <td>{{ pistum.horario }}</td>
+        </tr>
+        <tr>
+            <th>Precio</th>
+            <td>{{ pistum.precio }}</td>
+        </tr>
         </tbody>
     </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('pista_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('pista_edit', { 'id': pistum.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+    <br/><br/><br/>
+
+    {{ form_start(delete_form) }}
+        <input type="submit" value="Borrar" class="btn btn-danger">
+        <a href="{{ path('pista_index') }}" class="btn btn-info">Volver al listado</a>
+        <a href="{{ path('pista_edit', { 'id': pistum.id }) }}" class="btn btn-success">Editar</a>
+    {{ form_end(delete_form) }}
+</div>
+
 {% endblock %}

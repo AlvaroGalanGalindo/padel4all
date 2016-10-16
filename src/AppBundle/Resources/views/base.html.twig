@@ -1,5 +1,7 @@
 {% extends 'MopaBootstrapBundle::layout.html.twig' %}
 
+{% block title %}padel4all{% endblock title %}
+
 {% block head_style %}
 
     {% stylesheets
@@ -17,6 +19,23 @@
 
 
 {% endblock head_style %}
+
+{% block body_start %}
+
+    <div class="top-logo center-block">
+        <h1><a href="{{ path("homepage") }}">padel4all</a></h1>
+        <div class="user-widget">
+            {% if app.user is not empty %}
+                Registrado como <b>{{ app.user.username }}</b> - <a href="{{ path("fos_user_security_logout") }}">Desconectar</a>
+            {% else %}
+                <a href="{{ path("fos_user_security_login") }}">Login</a> - <a href="{{ path("fos_user_registration_register") }}">Registro</a><br/>
+            {% endif %}
+        </div>
+    </div>
+{% endblock body_start %}
+
+{% block body %}
+{% endblock body %}
 
 {% block foot_script_assetic %}
     {# Please add the javascripts you need in your project

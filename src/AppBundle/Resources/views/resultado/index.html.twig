@@ -1,49 +1,35 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <h1>Resultado list</h1>
+<div class="container">
+    <div class="content">
+        <div class="page-header">
+            <h2>Resultados</h2>
+        </div>
 
-    <table>
-        <thead>
+        <table class="table">
+            <thead>
             <tr>
-                <th>Id</th>
-                <th>Set1p1</th>
-                <th>Set1p2</th>
-                <th>Set2p1</th>
-                <th>Set2p2</th>
-                <th>Set3p1</th>
-                <th>Set3p2</th>
+                <th>Fecha del partido</th>
+                <th>Propietario de la pista</th>
+                <th>Nombre de la pista</th>
                 <th>Actions</th>
             </tr>
-        </thead>
-        <tbody>
-        {% for resultado in resultados %}
-            <tr>
-                <td><a href="{{ path('resultados_show', { 'id': resultado.id }) }}">{{ resultado.id }}</a></td>
-                <td>{{ resultado.set1p1 }}</td>
-                <td>{{ resultado.set1p2 }}</td>
-                <td>{{ resultado.set2p1 }}</td>
-                <td>{{ resultado.set2p2 }}</td>
-                <td>{{ resultado.set3p1 }}</td>
-                <td>{{ resultado.set3p2 }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('resultados_show', { 'id': resultado.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('resultados_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+            </thead>
+            <tbody>
+            {% for resultado in resultados %}
+                <tr>
+                    <td>{% if resultado.partido.fecha %}{{ resultado.partido.fecha|date('d-m-Y H:i') }}{% endif %}</td>
+                    <td>{{ resultado.partido.pista.propietario }}</td>
+                    <td>{{ resultado.partido.pista.nombre }}</td>
+                    <td>
+                        <a href="{{ path('resultados_show', { 'id': resultado.id }) }}" class="btn btn-info">Ver</a>
+                        <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn btn-info">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}

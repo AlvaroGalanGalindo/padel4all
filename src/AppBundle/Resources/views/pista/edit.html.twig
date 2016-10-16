@@ -1,11 +1,9 @@
 {% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <i class="fa fa-user" aria-hidden="true"></i>
-
     <div class="container">
         <div class="content">
-            <div class="page-header"><h1>Edición de pista</h1></div>
+            <div class="page-header"><h2>Edición de pista</h2></div>
             {{ form_start(edit_form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
                 {{ form_errors(edit_form) }}
 
@@ -37,5 +35,4 @@
             {{ form_end(delete_form) }}
         </div>
     </div>
-
 {% endblock %}

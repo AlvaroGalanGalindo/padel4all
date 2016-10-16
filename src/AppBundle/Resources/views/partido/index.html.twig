@@ -1,39 +1,40 @@
-{% extends 'base.html.twig' %}
+{% extends '@App/base.html.twig' %}
 
 {% block body %}
-    <h1>Partido list</h1>
+<div class="container">
+    <div class="content">
+        <div class="page-header">
+            <h2>Partidos</h2>
+            <div class="list-new"><a href="{{ path('partidos_new') }}" class="btn btn-success">Crear nuevo partido</a></div>
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Fecha</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for partido in partidos %}
-            <tr>
-                <td><a href="{{ path('partidos_show', { 'id': partido.id }) }}">{{ partido.id }}</a></td>
-                <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('partidos_show', { 'id': partido.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('partidos_edit', { 'id': partido.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('partidos_new') }}">Create a new entry</a>
-        </li>
-    </ul>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Fecha y hora del partido</th>
+                    <th>Propietario de pista</th>
+                    <th>Pista</th>
+                    <th>Número de jugadores</th>
+                    <th>Jugadores</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for partido in partidos %}
+                <tr>
+                    <td>{% if partido.fecha %}{{ partido.fecha|date('d-m-Y H:i') }}{% endif %}</td>
+                    <td>{{ partido.pista.propietario }}</td>
+                    <td>{{ partido.pista.nombre }}</td>
+                    <td>{{ partido.getNumJugadores() }}</td>
+                    <td>{{ partido.getJugadores() | join(',') }}</td>
+                    <td>
+                        <a href="{{ path('partidos_show', { 'id': partido.id }) }}" class="btn btn-info">Ver</a>
+                        <a href="{{ path('partidos_edit', { 'id': partido.id }) }}" class="btn btn-info">Editar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
