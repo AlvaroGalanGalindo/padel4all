@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 
 /**
  * Pista
@@ -24,7 +25,7 @@ class Pista
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=255, unique=true)
+     * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
@@ -133,7 +134,6 @@ class Pista
 
     public function __construct()
     {
-        parent::__construct();
         $this->partidos = new ArrayCollection();
     }
 

@@ -36,5 +36,6 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
         $entidad->setRoles(array('ROLE_ADMIN'));
         $this->setReference('Admin', $entidad);
         $userManager->updateUser($entidad);
+        $this->setReference("USER" . 1, $entidad);
     }
 }
