@@ -1,7 +1,7 @@
 {
     "name": "ceec/padel4all",
     "engines": {
-        "node": "0.12.x"
+        "node": "6.x"
     },
     "dependencies": {
         "uglifycss": "*",
