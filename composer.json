@@ -1,5 +1,12 @@
 {
     "name": "ceec/padel4all",
+    "engines": {
+        "node": "0.12.x"
+    },
+    "dependencies": {
+        "uglifycss": "*",
+        "uglify-js": "*"
+    },
     "license": "proprietary",
     "type": "project",
     "autoload": {
