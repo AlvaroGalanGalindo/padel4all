@@ -4,8 +4,8 @@
         "node": "0.12.x"
     },
     "dependencies": {
-        "uglify-js": "*",
-        "uglifycss": "*"
+        "uglifycss": "*",
+        "uglify-js": "*"
     },
     "license": "proprietary",
     "type": "project",
