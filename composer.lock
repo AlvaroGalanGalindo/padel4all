@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "936ce06d915074c59298176bd1c5c394",
-    "content-hash": "17c2bf10cca5c8942db261887aea0bf3",
+    "hash": "aa0e24359a485727e3a62c363bccd4c9",
+    "content-hash": "cfd3b0d67a5ecc3d62681f7591ea5f54",
     "packages": [
         {
             "name": "craue/formflow-bundle",
@@ -1434,6 +1434,62 @@
                 "composer"
             ],
             "time": "2015-10-01 19:20:19"
+        },
+        {
+            "name": "mouf/nodejs-installer",
+            "version": "v1.0.11",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thecodingmachine/nodejs-installer.git",
+                "reference": "27c68c195a20bf7d144eb865e5e4f3046995eec8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thecodingmachine/nodejs-installer/zipball/27c68c195a20bf7d144eb865e5e4f3046995eec8",
+                "reference": "27c68c195a20bf7d144eb865e5e4f3046995eec8",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0.0",
+                "ext-openssl": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "composer/composer": "*"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": [
+                    "Mouf\\NodeJsInstaller\\NodeJsPlugin"
+                ],
+                "mouf": {
+                    "logo": "node-js.png"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Mouf\\NodeJsInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "David Négrier",
+                    "email": "d.negrier@thecodingmachine.com",
+                    "homepage": "http://mouf-php.com"
+                }
+            ],
+            "description": "An installer package that let's you install NodeJS and NPM as a Composer dependency.",
+            "homepage": "http://mouf-php.com/packages/mouf/nodejs-installer",
+            "keywords": [
+                "installer",
+                "nodejs",
+                "npm"
+            ],
+            "time": "2016-10-07 11:56:33"
         },
         {
             "name": "paragonie/random_compat",
