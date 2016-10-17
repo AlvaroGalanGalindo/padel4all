@@ -28,7 +28,8 @@
         "mopa/composer-bridge": "^1.5",
         "raulfraile/ladybug-bundle": "^1.0",
         "fzaninotto/faker": "^1.6",
-        "doctrine/doctrine-fixtures-bundle": "^2.3"
+        "doctrine/doctrine-fixtures-bundle": "^2.3",
+        "craue/formflow-bundle": "^2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "~3.0",
