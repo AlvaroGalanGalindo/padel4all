@@ -6,7 +6,7 @@
 
     {% stylesheets
     '@AppBundle/Resources/public/less/custom.less'
-    filter='cssrewrite'
+    filter='cssrewrite' output='css/custom.css'
     %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
     {% endstylesheets %}
@@ -14,7 +14,7 @@
 
     {% javascripts
     'bundles/app/js/jquery-3.1.1.min.js'
-    filter='cssrewrite'
+    filter='cssrewrite' output='css/custom.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
