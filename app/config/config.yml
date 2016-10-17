@@ -91,7 +91,7 @@ assetic:
     filters:
         cssrewrite: ~
         less:
-            node: /bin/node
+            node: '%kernel.root_dir%/bin/node'
             #node: /usr/local/bin/node
             node_paths: [/usr/local/lib/node_modules/]
             apply_to: "\.less$"
