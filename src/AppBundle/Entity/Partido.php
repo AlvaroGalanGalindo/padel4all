@@ -3,12 +3,13 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Partido
  *
- * @ORM\Table(name="partido")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PartidoRepository")
+ * @ORM\Table(name="partido")
  */
 class Partido
 {
@@ -27,6 +28,13 @@ class Partido
      * @ORM\Column(name="fecha", type="datetime")
      */
     private $fecha;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_fin", type="datetime")
+     */
+    private $fecha_fin;
 
     /**
      * @ORM\ManyToOne(
@@ -103,6 +111,12 @@ class Partido
     public function setFecha($fecha)
     {
         $this->fecha = $fecha;
+        if (!empty($fecha)) {
+            $this->fecha_fin = new \DateTime($fecha->format('Y-m-d H:i'));
+            $this->fecha_fin->modify('+90 minutes');
+        } else {
+            $this->fecha_fin = null;
+        }
 
         return $this;
     }
@@ -125,6 +139,29 @@ class Partido
     public function getFormatFecha()
     {
         return $this->fecha->format('d/m/Y H:i');
+    }
+
+    /**
+     * Set fecha_fin
+     *
+     * @param \DateTime $fecha_fin
+     * @return Partido
+     */
+    public function setFechaFin($fecha_fin)
+    {
+        $this->fecha_fin = $fecha_fin;
+
+        return $this;
+    }
+
+    /**
+     * Get fecha_fin
+     *
+     * @return \DateTime
+     */
+    public function getFechaFin()
+    {
+        return $this->fecha_fin;
     }
 
     /**

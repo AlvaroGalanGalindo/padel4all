@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -45,12 +46,19 @@ class PartidoController extends Controller
         $form = $this->createForm('AppBundle\Form\PartidoType', $partido);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($partido);
-            $em->flush();
+        if ($form->isSubmitted()) {
+            $error_ocupada = $this->getErrorPistaOccupied($partido);
+            if (!empty($error_ocupada)) {
+                $form->addError(new FormError($error_ocupada));
+            }
 
-            return $this->redirectToRoute('partidos_show', array('id' => $partido->getId()));
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($partido);
+                $em->flush();
+
+                return $this->redirectToRoute('partidos_show', array('id' => $partido->getId()));
+            }
         }
 
         return $this->render('@App/partido/new.html.twig', array(
@@ -86,6 +94,11 @@ class PartidoController extends Controller
         $deleteForm = $this->createDeleteForm($partido);
         $editForm = $this->createForm('AppBundle\Form\PartidoType', $partido);
         $editForm->handleRequest($request);
+
+        $error_ocupada = $this->getErrorPistaOccupied($partido);
+        if (!empty($error_ocupada)) {
+            $editForm->addError(new FormError($error_ocupada));
+        }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -137,4 +150,32 @@ class PartidoController extends Controller
             ->getForm()
         ;
     }
+
+    /**
+     * Check if Pista is in use by another Partido at the same time.
+     *
+     * @param Partido $partido
+     *
+     * @return string
+     */
+    private function getErrorPistaOccupied(Partido $partido)
+    {
+        $mensaje_error = "";
+
+        $em = $this->getDoctrine()->getManager();
+        $reserva = $em->getRepository('AppBundle:Partido')->getPartidoAtPistaFecha(
+            empty($partido->getId()) ? 0 : $partido->getId(),
+            $partido->getPista()->getId(),
+            $partido->getFecha()
+        );
+
+        if (!empty($reserva)) {
+            $desde = $reserva->getFecha()->format('H:i');
+            $hasta = $reserva->getFechaFin()->format('H:i');
+            $mensaje_error = "Pista ya reservada de $desde a $hasta";
+        }
+
+        return $mensaje_error;
+    }
+
 }
