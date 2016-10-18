@@ -26,7 +26,7 @@
                     <td>{{ partido.pista.propietario }}</td>
                     <td>{{ partido.pista.nombre }}</td>
                     <td>{{ partido.getNumJugadores() }}</td>
-                    <td>{{ partido.getJugadores() | join(',') }}</td>
+                    <td>{{ partido.getJugadores() | join(', ') }}</td>
                     <td>
                         <a href="{{ path('partidos_show', { 'id': partido.id }) }}" class="btn btn-info">Ver</a>
                         <a href="{{ path('partidos_edit', { 'id': partido.id }) }}" class="btn btn-info">Editar</a>

@@ -1,5 +1,5 @@
 imports:
-    ##- { resource: parameters.yml }
+    #- { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
 
@@ -90,8 +90,7 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
-        less:
-            node: '%kernel.root_dir%/../bin/node'
-            #node: /usr/local/bin/node
-            node_paths: [/usr/local/lib/node_modules/]
-            apply_to: "\.less$"
+#        less:
+#            node: /usr/local/bin/node
+#            node_paths: [/usr/local/lib/node_modules/]
+#            apply_to: "\.less$"

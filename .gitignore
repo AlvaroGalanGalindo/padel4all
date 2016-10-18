@@ -7,13 +7,18 @@ app/cache/*
 app/logs/*
 vendor/*
 web/bundles/*
-web/css/*
-web/js/*
+#web/css/*
+#web/js/*
 web/uploads/*
- 
+
 # -- Composer -----------------------------------------
 composer.phar
- 
+composer.lock
+
+# -- Grunt --------------------------------------------
+node_modules
+
+
 # -- PHPUnit ------------------------------------------
 app/phpunit.xml  
  
