@@ -77,6 +77,10 @@
 
 <script>
     function setJugadorPartido(posObj){
+        if ("{{ app.user }}" == "") {
+            alert("Tienes que loguearte para poder apuntarte a un partido.");
+            return false;
+        }
         posId = posObj.parentNode.id;
         $.post('{{ path('ajax_usermatch') }}',
             { partidoId: {{ partido.id }}, posicion: posId },
