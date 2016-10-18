@@ -4,19 +4,20 @@
 
 {% block head_style %}
 
-    {% stylesheets
+    {#{% stylesheets
     '@AppBundle/Resources/public/less/custom.less'
     filter='cssrewrite' output='css/style.min.css'
     %}
     <link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
-    {% endstylesheets %}
+    {% endstylesheets %}#}
+    <link href="{{ asset('css/style.min.css') }}" type="text/css" rel="stylesheet" media="screen" />
 
-
-    {% javascripts
+    {#{% javascripts
     'bundles/app/js/jquery-3.1.1.min.js'
     %}
     <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
+    {% endjavascripts %}#}
+    <script type="text/javascript" src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
 
 
 {% endblock head_style %}
