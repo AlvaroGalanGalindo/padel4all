@@ -1,0 +1,31 @@
+{
+  "name": "padel4all",
+  "version": "1.0.0",
+  "description": "Gestión de partidos de pádel",
+  "main": "Gruntfile.js",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "^1.4.0",
+    "grunt-contrib-requirejs": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-shell": "^2.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlvaroGalanGalindo/padel4all.git"
+  },
+  "author": "Alvaro Galán",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AlvaroGalanGalindo/padel4all/issues"
+  },
+  "homepage": "https://github.com/AlvaroGalanGalindo/padel4all#readme"
+}

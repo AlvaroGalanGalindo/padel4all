@@ -10,10 +10,14 @@ web/bundles/*
 web/css/*
 web/js/*
 web/uploads/*
- 
+
 # -- Composer -----------------------------------------
 composer.phar
- 
+
+# -- Grunt --------------------------------------------
+node_modules
+
+
 # -- PHPUnit ------------------------------------------
 app/phpunit.xml  
  
