@@ -25,7 +25,7 @@ class AjaxController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $posicion = $request->get('posicion');
-        $partidoId = $request->get('partidoId');
+        $partidoId = $request->get('partido_id');
         $jugador = $this->getUser();
         $jugador_nombre = $jugador->getNickNombre();
         $resultado = false;
@@ -33,10 +33,17 @@ class AjaxController extends Controller
 
         $partido = $em->getRepository('AppBundle:Partido')->find($partidoId);
         if (!$partido->UserInPartido($jugador)) {
-            $resultado = $this->addUserToPartido($partidoId, $jugador->getId(), $posicion);
-            if ($resultado) { $mensaje = "¡Te has apuntado al partido!"; }
+            $error_jugador = $this->get('app.partido_service')->getErrorUserOccupied($partido, $jugador->getId());
+            if (!empty($error_jugador)) {
+                $mensaje = $error_jugador;
+            } else {
+                $resultado = $this->addUserToPartido($partidoId, $jugador->getId(), $posicion);
+                if ($resultado) {
+                    $mensaje = "¡Te has apuntado al partido!";
+                }
+            }
         } else {
-            $mensaje = "¡Ya estás en este partido!";
+            $mensaje = "¡Ya estás apuntado en este partido!";
         }
 
         $response = array("jugador" => $jugador_nombre, "success" => $resultado, "mensaje" => $mensaje);

@@ -83,7 +83,7 @@
         }
         posId = posObj.parentNode.id;
         $.post('{{ path('ajax_usermatch') }}',
-            { partidoId: {{ partido.id }}, posicion: posId },
+            { partido_id: {{ partido.id }}, posicion: posId },
             function(response){
                 if(response.success){
                     $("#"+posId).html(response.jugador);

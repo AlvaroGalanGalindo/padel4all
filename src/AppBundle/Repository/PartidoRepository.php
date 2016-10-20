@@ -12,8 +12,9 @@ use Doctrine\ORM\EntityRepository;
  */
 class PartidoRepository extends EntityRepository
 {
-    public function getPartidoAtPistaFecha($partido_id, $pista_id, $fecha_reserva){
 
+    public function getPartidoAtPistaFecha($partido_id, $pista_id, $fecha_reserva)
+    {
         $fecha_reserva_fin = new \DateTime($fecha_reserva->format('Y-m-d H:i'));
         $fecha_reserva_fin->modify("+90 minutes");
 
@@ -24,6 +25,31 @@ class PartidoRepository extends EntityRepository
             ->andWhere('p.id <> :partido_id')
             ->andWhere(':fecha_reserva BETWEEN p.fecha AND p.fecha_fin OR :fecha_reserva_fin BETWEEN p.fecha AND p.fecha_fin')
             ->setParameter('pista_id', $pista_id)
+            ->setParameter('partido_id', $partido_id)
+            ->setParameter('fecha_reserva', $fecha_reserva)
+            ->setParameter('fecha_reserva_fin', $fecha_reserva_fin)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult();
+
+        return $partido;
+    }
+
+    public function getPartidoWithUserFecha($partido_id, $jugadores, $fecha_reserva)
+    {
+        $fecha_reserva_fin = new \DateTime($fecha_reserva->format('Y-m-d H:i'));
+        $fecha_reserva_fin->modify("+90 minutes");
+
+        $partido = $this->createQueryBuilder('p')
+            ->select('p')
+            ->leftJoin('p.p1j1','u11')
+            ->leftJoin('p.p1j2','u12')
+            ->leftJoin('p.p2j1','u21')
+            ->leftJoin('p.p2j2','u22')
+            ->where('u11.id IN (:jugadores) OR u12.id IN (:jugadores) OR u21.id IN (:jugadores) OR u22.id IN (:jugadores)')
+            ->andWhere('p.id <> :partido_id')
+            ->andWhere(':fecha_reserva BETWEEN p.fecha AND p.fecha_fin OR :fecha_reserva_fin BETWEEN p.fecha AND p.fecha_fin')
+            ->setParameter('jugadores', implode (", ", $jugadores))
             ->setParameter('partido_id', $partido_id)
             ->setParameter('fecha_reserva', $fecha_reserva)
             ->setParameter('fecha_reserva_fin', $fecha_reserva_fin)

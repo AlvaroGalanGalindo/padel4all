@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Partido;
 use AppBundle\Form\PartidoType;
+use AppBundle\Service\PartidoService;
 
 /**
  * Partido controller.
@@ -47,9 +48,14 @@ class PartidoController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $error_ocupada = $this->getErrorPistaOccupied($partido);
+            $error_ocupada = $this->get('app.partido_service')->getErrorPistaOccupied($partido);
             if (!empty($error_ocupada)) {
                 $form->addError(new FormError($error_ocupada));
+            }
+
+            $error_jugador = $this->get('app.partido_service')->getErrorUserOccupied($partido);
+            if (!empty($error_jugador)) {
+                $form->addError(new FormError($error_jugador));
             }
 
             if ($form->isValid()) {
@@ -95,9 +101,14 @@ class PartidoController extends Controller
         $editForm = $this->createForm('AppBundle\Form\PartidoType', $partido);
         $editForm->handleRequest($request);
 
-        $error_ocupada = $this->getErrorPistaOccupied($partido);
+        $error_ocupada = $this->get('app.partido_service')->getErrorPistaOccupied($partido);
         if (!empty($error_ocupada)) {
             $editForm->addError(new FormError($error_ocupada));
+        }
+
+        $error_jugador = $this->get('app.partido_service')->getErrorUserOccupied($partido);
+        if (!empty($error_jugador)) {
+            $editForm->addError(new FormError($error_jugador));
         }
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -149,33 +160,6 @@ class PartidoController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
-    }
-
-    /**
-     * Check if Pista is in use by another Partido at the same time.
-     *
-     * @param Partido $partido
-     *
-     * @return string
-     */
-    private function getErrorPistaOccupied(Partido $partido)
-    {
-        $mensaje_error = "";
-
-        $em = $this->getDoctrine()->getManager();
-        $reserva = $em->getRepository('AppBundle:Partido')->getPartidoAtPistaFecha(
-            empty($partido->getId()) ? 0 : $partido->getId(),
-            $partido->getPista()->getId(),
-            $partido->getFecha()
-        );
-
-        if (!empty($reserva)) {
-            $desde = $reserva->getFecha()->format('H:i');
-            $hasta = $reserva->getFechaFin()->format('H:i');
-            $mensaje_error = "Pista ya reservada de $desde a $hasta";
-        }
-
-        return $mensaje_error;
     }
 
 }
