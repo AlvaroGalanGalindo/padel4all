@@ -22,22 +22,37 @@
 
 {% endblock head_style %}
 
-{% block body_start %}
 
-    <div class="top-logo center-block">
-        <h1><a href="{{ path("homepage") }}">padel4all</a></h1>
-        <div class="user-widget">
-            {% if app.user is not empty %}
-                Registrado como <b>{{ app.user.username }}</b> - <a href="{{ path("fos_user_security_logout") }}">Desconectar</a>
-            {% else %}
-                <a href="{{ path("fos_user_security_login") }}">Login</a> - <a href="{{ path("fos_user_registration_register") }}">Registro</a><br/>
-            {% endif %}
+{% block body_start %}
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 cabecera center-block">
+            <h1><a href="{{ path("homepage") }}">padel4all</a></h1>
+            <div class="user-widget">
+                {% if app.user is not empty %}
+                    Registrado como <b>{{ app.user.username }}</b> - <a href="{{ path("fos_user_security_logout") }}">Desconectar</a>
+                {% else %}
+                    <a href="{{ path("fos_user_security_login") }}">Login</a> - <a href="{{ path("fos_user_registration_register") }}">Registro</a><br/>
+                {% endif %}
+            </div>
         </div>
+        <div class="col-xs-1"></div>
     </div>
 {% endblock body_start %}
 
+
 {% block body %}
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10 contenido">
+            {% block content %}
+            {% endblock content %}
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
 {% endblock body %}
+
+
 
 {% block foot_script_assetic %}
     {# Please add the javascripts you need in your project

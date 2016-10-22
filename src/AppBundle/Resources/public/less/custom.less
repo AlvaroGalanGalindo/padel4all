@@ -1,13 +1,30 @@
 @import "../../../../../vendor/twbs/bootstrap/less/bootstrap.less";
+
+// CONSTANTES
+// Librería de iconos
 @icon-font-path: "../../../../../vendor/twbs/bootstrap/fonts/";
 
-.top-logo {
+// Definición de colores
+@verde-pista: #84ad52;
+
+body {
+  background-color: lightgrey;
+}
+
+.cabecera {
   display: table;
   margin: 0 auto;
   text-align: center;
+  height: 150px;
+  background-color: @verde-pista;
+}
+
+.contenido {
+  background-color: white;
 }
 
 .list-new {
   float: right;
   margin-top: -40px;
 }
+
