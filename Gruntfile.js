@@ -53,18 +53,6 @@ module.exports = function(grunt) {
             }
         },
 
-        watch: {
-            options: {
-                livereload: true
-            },
-            styles: {
-                files: ['less/**/*.less'], // which files to watch
-                tasks: ['less'],
-                options: {
-                    nospawn: true
-                }
-            }
-        }
     });
 
     // Load the plugins.
