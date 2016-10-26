@@ -5,11 +5,29 @@
 {% endblock top %}
 
 {% block content %}
-    <ul>
-        <li><a href="{{ path("pista_index") }}">Pistas</a></li>
-        <li><a href="{{ path("partidos_index") }}">Partidos</a></li>
-        <li><a href="{{ path("resultados_index") }}">Resultados</a></li>
-    </ul>
+    <div class="row portada">
+        <a href="{{ path("pista_index") }}">
+            <div class="col-xs-4 item-container">
+                <div class="item">
+                    <img class="img-responsive center-block" src="{{ asset("images/pista.png") }}"><div class="titulo">PISTAS</div>
+                </div>
+            </div>
+        </a>
+        <a href="{{ path("partidos_index") }}">
+            <div class="col-xs-4 item-container">
+                <div class="item">
+                    <img class="img-responsive center-block" src="{{ asset("images/partido.png") }}"><div class="titulo">PARTIDOS</div>
+                </div>
+            </div>
+        </a>
+        <a href="{{ path("resultados_index") }}">
+            <div class="col-xs-4 item-container">
+                <div class="item">
+                    <img class="img-responsive center-block" src="{{ asset("images/resultado.png") }}"><div class="titulo">RESULTADOS</div>
+                </div>
+            </div>
+        </a>
+    </div>
 {% endblock %}
 
 {% block stylesheets %}

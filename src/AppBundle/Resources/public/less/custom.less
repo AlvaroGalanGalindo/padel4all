@@ -9,6 +9,8 @@
 
 body {
   background-color: lightgrey;
+  font-family: Verdana, "Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, sans-serif;
+  font-size: 1.1em;
 }
 
 .cabecera {
@@ -16,11 +18,23 @@ body {
   margin: 0 auto;
   text-align: center;
   height: 150px;
-  background-color: @verde-pista;
+  background-color: black;
+  .logo{
+    img {
+      height: 130px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+  }
+  .user-widget {
+    float: right;
+    color: darkgrey;
+  }
 }
 
 .contenido {
-  background-color: white;
+  background-color: @verde-pista;
+  min-height: 400px;
 }
 
 .list-new {
@@ -28,3 +42,25 @@ body {
   margin-top: -40px;
 }
 
+a, a:visited, a:active {
+  color: #00CC00;
+}
+
+.portada .item-container {
+  padding: 20px;
+  .item {
+    background-color: white;
+    text-align: center;
+    .titulo {
+      padding-bottom: 20px;
+
+    }
+  }
+  .item:hover {
+    background-color: lightskyblue;
+    .titulo {
+      color: black;
+      border-bottom: 0.36em solid black;
+    }
+  }
+}
