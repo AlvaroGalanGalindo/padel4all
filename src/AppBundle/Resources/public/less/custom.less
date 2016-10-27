@@ -30,12 +30,20 @@ body {
   .user-widget {
     float: right;
     color: darkgrey;
+    a, a:visited, a:active {
+      color: #00CC00;
+    }
   }
 }
 
 .contenido {
   background-color: @verde-pista;
   min-height: 400px;
+  .page-header {
+    margin: 30px;
+    border-bottom: 1px solid white;
+    color: white;
+  }
 }
 
 .list-new {
@@ -43,25 +51,44 @@ body {
   margin-top: -40px;
 }
 
-a, a:visited, a:active {
-  color: #00CC00;
-}
-
-.portada .item-container {
+.item-container {
   padding: 20px;
   .item {
     background-color: white;
     text-align: center;
+    padding: 5px;
     .titulo {
       padding-bottom: 20px;
-
+    }
+    .etiqueta {
+      font-weight: bold;
+    }
+    .valor {
+      padding-bottom: 5px;
+    }
+    .botonera {
+      padding-top: 10px;
+      a, a:visited, a:active {
+        background-color: lightskyblue;
+        color: white;
+      }
     }
   }
   .item:hover {
     background-color: lightskyblue;
+    border-bottom: 0.36em solid black;
     .titulo {
       color: black;
-      border-bottom: 0.36em solid black;
+    }
+    a, a:visited, a:active {
+      background-color: white;
+      color: lightskyblue;
+    }
+    a:hover {
+      background-color: black;
+      color: white;
     }
   }
 }
+
+

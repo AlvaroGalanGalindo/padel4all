@@ -1,35 +1,27 @@
 {% extends '@App/base.html.twig' %}
 
-{% block body %}
-<div class="container">
+{% block content %}
     <div class="content">
-        <div class="page-header">
-            <h2>Resultados</h2>
-        </div>
-
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Fecha del partido</th>
-                <th>Propietario de la pista</th>
-                <th>Nombre de la pista</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
+        <div class="row">
+            <div class="page-header">
+                <h2>Resultados</h2>
+            </div>
             {% for resultado in resultados %}
-                <tr>
-                    <td>{% if resultado.partido.fecha %}{{ resultado.partido.fecha|date('d-m-Y H:i') }}{% endif %}</td>
-                    <td>{{ resultado.partido.pista.propietario }}</td>
-                    <td>{{ resultado.partido.pista.nombre }}</td>
-                    <td>
-                        <a href="{{ path('resultados_show', { 'id': resultado.id }) }}" class="btn btn-info">Ver</a>
-                        <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn btn-info">Editar</a>
-                    </td>
-                </tr>
+                <div class="col-xs-4 item-container">
+                    <div class="item">
+                        <div class="etiqueta">Fecha del partido</div>
+                        <div class="valor">{% if resultado.partido.fecha %}{{ resultado.partido.fecha|date('d-m-Y H:i') }}{% endif %}</div>
+                        <div class="etiqueta">Propietario de la pista</div>
+                        <div class="valor">{{ resultado.partido.pista.propietario }}</div>
+                        <div class="etiqueta">Nombre de la pista</div>
+                        <div class="valor">{{ resultado.partido.pista.nombre }}</div>
+                        <div class="botonera">
+                            <a href="{{ path('resultados_show', { 'id': resultado.id }) }}" class="btn btn-info">Ver</a>
+                            <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn btn-info">Editar</a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
     </div>
-</div>
 {% endblock %}
