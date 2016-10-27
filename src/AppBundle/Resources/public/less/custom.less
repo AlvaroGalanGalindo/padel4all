@@ -49,12 +49,22 @@ body {
 .list-new {
   float: right;
   margin-top: -40px;
+  .btn {
+    background-color: lightskyblue;
+    color: white;
+  }
+  .btn:hover {
+    background-color: black;
+  }
 }
 
 .item-container {
   padding: 20px;
   .item-pista {
     min-height: 215px;
+  }
+  .item-partido {
+    min-height: 270px;
   }
   .item-resultado {
     min-height: 180px;
@@ -80,7 +90,7 @@ body {
       width: 100%;
       padding-right: 10px;
       margin-bottom: 5px;
-      a, a:visited, a:active {
+      .btn {
         background-color: lightskyblue;
         color: white;
       }
@@ -92,11 +102,11 @@ body {
       color: black;
       border-bottom: 0.36em solid black;
     }
-    a, a:visited, a:active {
+    .btn {
       background-color: white;
       color: lightskyblue;
     }
-    a:hover {
+    .btn:hover {
       background-color: black;
       color: white;
     }

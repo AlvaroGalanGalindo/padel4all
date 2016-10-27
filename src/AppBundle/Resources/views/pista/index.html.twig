@@ -4,7 +4,8 @@
     <div class="content">
         <div class="row">
             <div class="page-header">
-                <h2>Resultados</h2>
+                <h2>Pistas</h2>
+                <div class="list-new"><a href="{{ path('pista_new') }}" class="btn">Crear nueva pista</a></div>
             </div>
             {% for pista in pistas %}
                 <div class="col-xs-4 item-container">
@@ -18,8 +19,8 @@
                         <div class="etiqueta">telefono</div>
                         <div class="valor">{{ pista.telefono }}</div>
                         <div class="botonera">
-                            <a href="{{ path('pista_show', { 'id': pista.id }) }}" class="btn btn-info">Ver</a>
-                            <a href="{{ path('pista_edit', { 'id': pista.id }) }}" class="btn btn-info">Editar</a>
+                            <a href="{{ path('pista_show', { 'id': pista.id }) }}" class="btn">Ver</a>
+                            <a href="{{ path('pista_edit', { 'id': pista.id }) }}" class="btn">Editar</a>
                         </div>
                     </div>
                 </div>
