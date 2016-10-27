@@ -1,39 +1,29 @@
 {% extends '@App/base.html.twig' %}
 
-{% block body %}
-<div class="container">
+{% block content %}
     <div class="content">
-        <div class="page-header">
-            <h2>Pistas</h2>
-            <div class="list-new"><a href="{{ path('pista_new') }}" class="btn btn-success">Crear nueva pista</a></div>
-        </div>
-
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Propietario</th>
-                <th>Localidad</th>
-                <th>Telefono</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for pistum in pistas %}
-                <tr>
-                    <td>{{ pistum.nombre }}</td>
-                    <td>{{ pistum.propietario }}</td>
-                    <td>{{ pistum.localidad }}</td>
-                    <td>{{ pistum.telefono }}</td>
-                    <td>
-                        <a href="{{ path('pista_show', { 'id': pistum.id }) }}" class="btn btn-info">Ver</a>
-                        <a href="{{ path('pista_edit', { 'id': pistum.id }) }}" class="btn btn-info">Editar</a>
-                    </td>
-                </tr>
+        <div class="row">
+            <div class="page-header">
+                <h2>Resultados</h2>
+            </div>
+            {% for pista in pistas %}
+                <div class="col-xs-4 item-container">
+                    <div class="item item-pista">
+                        <div class="etiqueta">Nombre</div>
+                        <div class="valor">{{ pista.nombre }}</div>
+                        <div class="etiqueta">Propietario</div>
+                        <div class="valor">{{ pista.propietario }}</div>
+                        <div class="etiqueta">Localidad</div>
+                        <div class="valor">{{ pista.localidad }}</div>
+                        <div class="etiqueta">telefono</div>
+                        <div class="valor">{{ pista.telefono }}</div>
+                        <div class="botonera">
+                            <a href="{{ path('pista_show', { 'id': pista.id }) }}" class="btn btn-info">Ver</a>
+                            <a href="{{ path('pista_edit', { 'id': pista.id }) }}" class="btn btn-info">Editar</a>
+                        </div>
+                    </div>
+                </div>
             {% endfor %}
-            </tbody>
-        </table>
+        </div>
     </div>
-</div>
-
 {% endblock %}

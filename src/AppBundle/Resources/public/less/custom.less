@@ -53,10 +53,17 @@ body {
 
 .item-container {
   padding: 20px;
+  .item-pista {
+    min-height: 215px;
+  }
+  .item-resultado {
+    min-height: 180px;
+  }
   .item {
     background-color: white;
     text-align: center;
     padding: 5px;
+    position: relative;
     .titulo {
       padding-bottom: 20px;
     }
@@ -68,6 +75,11 @@ body {
     }
     .botonera {
       padding-top: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding-right: 10px;
+      margin-bottom: 5px;
       a, a:visited, a:active {
         background-color: lightskyblue;
         color: white;
@@ -76,9 +88,9 @@ body {
   }
   .item:hover {
     background-color: lightskyblue;
-    border-bottom: 0.36em solid black;
     .titulo {
       color: black;
+      border-bottom: 0.36em solid black;
     }
     a, a:visited, a:active {
       background-color: white;
