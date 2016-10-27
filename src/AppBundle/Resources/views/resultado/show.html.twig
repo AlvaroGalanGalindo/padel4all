@@ -5,44 +5,46 @@
 {% set p2j1 = resultado.partido.p2j1 is empty ? "sin jugador" : resultado.partido.p2j1.username %}
 {% set p2j2 = resultado.partido.p2j2 is empty ? "sin jugador" : resultado.partido.p2j2.username %}
 
-{% block body %}
-<div class="container">
-    <div class="content">
-        <div class="page-header"><h2>Detalles del resultado</h2></div>
+
+
+{% block content %}
+    <div class="page-header">
+        <h2>Detalles del resultado</h2>
     </div>
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>{{ p1j1 }} - {{ p1j2 }}</th>
-            <th>vs.</th>
-            <th>{{ p2j1 }} - {{ p2j2 }}</th>
-        </tr>
-        <tr>
-            <td>{{ resultado.set1p1 }}</td>
-            <td>SET 1</td>
-            <td>{{ resultado.set1p2 }}</td>
-        </tr>
-        <tr>
-            <td>{{ resultado.set2p1 }}</td>
-            <td>SET 2</td>
-            <td>{{ resultado.set2p2 }}</td>
-        </tr>
-        <tr>
-            <td>{{ resultado.set3p1 }}</td>
-            <td>SET 3</td>
-            <td>{{ resultado.set3p2 }}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="entity-show entity-show-partido">
+        <table class="table">
+            <tbody>
+            <tr>
+                <th class="titulo">{{ p1j1 }} - {{ p1j2 }}</th>
+                <th class="titulo">vs.</th>
+                <th class="titulo">{{ p2j1 }} - {{ p2j2 }}</th>
+            </tr>
+            <tr>
+                <td class="{{ resultado.set1p1 > resultado.set1p2 ? "win" : "lose" }}">{{ resultado.set1p1 }}</td>
+                <td class="titulo">SET 1</td>
+                <td class="{{ resultado.set1p1 < resultado.set1p2 ? "win" : "lose" }}">{{ resultado.set1p2 }}</td>
+            </tr>
+            <tr>
+                <td class="{{ resultado.set2p1 > resultado.set2p2 ? "win" : "lose" }}">{{ resultado.set2p1 }}</td>
+                <td class="titulo">SET 2</td>
+                <td class="{{ resultado.set2p1 < resultado.set2p2 ? "win" : "lose" }}">{{ resultado.set2p2 }}</td>
+            </tr>
+            <tr>
+                <td class="{{ resultado.set3p1 > resultado.set3p2 ? "win" : "lose" }}">{{ resultado.set3p1 }}</td>
+                <td class="titulo">SET 3</td>
+                <td class="{{ resultado.set3p1 < resultado.set3p2 ? "win" : "lose" }}">{{ resultado.set3p2 }}</td>
+            </tr>
+            </tbody>
+        </table>
 
-    <br/><br/><br/>
+        <br/><br/><br/>
 
-    {{ form_start(delete_form) }}
+        {{ form_start(delete_form) }}
         <input type="submit" value="Borrar" class="btn btn-danger">
         <a href="{{ path('resultados_index') }}" class="btn btn-info">Volver al listado</a>
         <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn btn-success">Editar</a>
-    {{ form_end(delete_form) }}
-</div>
+        {{ form_end(delete_form) }}
+    </div>
 
 {% endblock %}

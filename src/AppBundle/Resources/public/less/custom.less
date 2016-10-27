@@ -37,12 +37,12 @@ body {
 }
 
 .contenido {
-  background-color: @verde-pista;
+  background-color: white;
   min-height: 400px;
   .page-header {
     margin: 30px;
-    border-bottom: 1px solid white;
-    color: white;
+    border-bottom: 1px solid black;
+    color: black;
   }
 }
 
@@ -74,6 +74,10 @@ body {
     text-align: center;
     padding: 5px;
     position: relative;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+    border:1px solid lightskyblue;
     .titulo {
       padding-bottom: 20px;
     }
@@ -98,9 +102,11 @@ body {
   }
   .item:hover {
     background-color: lightskyblue;
+    -webkit-box-shadow: #878787 5px 5px 5px;
+    -moz-box-shadow: #878787 5px 5px 5px;
+    box-shadow: #878787 5px 5px 5px;
     .titulo {
       color: black;
-      border-bottom: 0.36em solid black;
     }
     .btn {
       background-color: white;
@@ -126,6 +132,25 @@ body {
   .botonera {
     padding-top: 30px;
     float: right;
+  }
+}
+
+.entity-show-partido {
+  color: black;
+  th, td {
+    text-align: center;
+  }
+  .titulo {
+    background-color: lightskyblue;
+    color: black;
+    font-weight: bold;
+  }
+  .win {
+    background-color: #ccffcc;
+    font-weight: bold;
+  }
+  .lose {
+    background-color: #ffcccc;
   }
 }
 
