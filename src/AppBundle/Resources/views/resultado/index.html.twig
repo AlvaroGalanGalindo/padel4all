@@ -7,7 +7,7 @@
                 <h2>Resultados</h2>
             </div>
             {% for resultado in resultados %}
-                <div class="col-xs-4 item-container">
+                <div class="col-xs-12 col-md-6 col-lg-4 item-container">
                     <div class="item item-resultado">
                         <div class="etiqueta">Fecha del partido</div>
                         <div class="valor">{% if resultado.partido.fecha %}{{ resultado.partido.fecha|date('d-m-Y H:i') }}{% endif %}</div>

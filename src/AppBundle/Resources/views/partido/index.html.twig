@@ -8,7 +8,7 @@
                 <div class="list-new"><a href="{{ path('partidos_new') }}" class="btn">Crear nuevo partido</a></div>
             </div>
             {% for partido in partidos %}
-                <div class="col-xs-4 item-container">
+                <div class="col-xs-12 col-md-6 col-lg-4 item-container">
                     <div class="item item-partido">
                         <div class="etiqueta">Fecha y hora del partido</div>
                         <div class="valor">{% if partido.fecha %}{{ partido.fecha|date('d-m-Y H:i') }}{% endif %}</div>
