@@ -12,13 +12,13 @@
         <h2>Detalles del resultado</h2>
     </div>
 
-    <div class="entity-show entity-show-partido">
+    <div class="entity-show entity-show-resultado">
         <table class="table">
             <tbody>
             <tr>
-                <th class="titulo">{{ p1j1 }} - {{ p1j2 }}</th>
-                <th class="titulo">vs.</th>
-                <th class="titulo">{{ p2j1 }} - {{ p2j2 }}</th>
+                <th class="titulo td40">{{ p1j1 }} - {{ p1j2 }}</th>
+                <th class="titulo td20">vs.</th>
+                <th class="titulo td40">{{ p2j1 }} - {{ p2j2 }}</th>
             </tr>
             <tr>
                 <td class="{{ resultado.set1p1 > resultado.set1p2 ? "win" : "lose" }}">{{ resultado.set1p1 }}</td>
@@ -38,13 +38,20 @@
             </tbody>
         </table>
 
-        <br/><br/><br/>
+        <div class="container botonera">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn btn-success">Editar</a>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <a href="{{ path('resultados_index') }}" class="btn btn-info">Volver al listado</a>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    {{ form_start(delete_form) }}<input type="submit" value="Borrar" class="btn btn-danger">{{ form_end(delete_form) }}
+                </div>
+            </div>
+        </div>
 
-        {{ form_start(delete_form) }}
-        <input type="submit" value="Borrar" class="btn btn-danger">
-        <a href="{{ path('resultados_index') }}" class="btn btn-info">Volver al listado</a>
-        <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn btn-success">Editar</a>
-        {{ form_end(delete_form) }}
     </div>
 
 {% endblock %}

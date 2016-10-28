@@ -132,13 +132,18 @@ body {
   .etiqueta {
     font-weight: bold;
   }
-  .botonera {
-    padding-top: 30px;
-    float: right;
+  .botonera input, a {
+    width: 100%;
+  }
+  .td40 {
+    width: 40%;
+  }
+  .td20 {
+    width: 20%;
   }
 }
 
-.entity-show-partido {
+.entity-show-resultado {
   color: black;
   th, td {
     text-align: center;
@@ -157,4 +162,45 @@ body {
   }
 }
 
+.entity-show-partido {
+  .pista {
+    width: 470px;
+    height: 222px;
+    background: lightskyblue url('../images/pista_padel.png');
+    .jugador {
+      height: 112px;
+      padding: 0;
+      margin: 0;
+      text-align: center;
+      display: table;
+      .jugador-data {
+        display: table-cell;
+        vertical-align: middle;
+        .libre {
+          background-color: green;
+        }
+        .ocupado {
+          background-color: red;
+        }
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 20px;
+          margin-bottom: 10px;
+        }
+        a, a:active, a:visited, a:hover {
+          color: red;
+          text-decoration: none;
+          padding-top: 5px;
+        }
+      }
+    }
+    .p1j1, .p1j2 {
+      padding-left: 60px;
+    }
+    .p2j1, .p2j2 {
+      padding-right: 60px;
+    }
+  }
+}
 

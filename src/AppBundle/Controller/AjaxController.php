@@ -25,6 +25,7 @@ class AjaxController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $posicion = $request->get('posicion');
+        $quitar = "true" == $request->get('quitar');
         $partidoId = $request->get('partido_id');
         $jugador = $this->getUser();
         $jugador_nombre = $jugador->getNickNombre();
@@ -32,14 +33,14 @@ class AjaxController extends Controller
         $mensaje = "";
 
         $partido = $em->getRepository('AppBundle:Partido')->find($partidoId);
-        if (!$partido->UserInPartido($jugador)) {
+        if ($quitar || !$partido->UserInPartido($jugador)) {
             $error_jugador = $this->get('app.partido_service')->getErrorUserOccupied($partido, $jugador->getId());
             if (!empty($error_jugador)) {
                 $mensaje = $error_jugador;
             } else {
-                $resultado = $this->addUserToPartido($partidoId, $jugador->getId(), $posicion);
+                $resultado = $this->addUserToPartido($partidoId, $jugador->getId(), $posicion, $quitar);
                 if ($resultado) {
-                    $mensaje = "¡Te has apuntado al partido!";
+                    $mensaje = $quitar ? "¡Te has quitado del partido!" : "¡Te has apuntado al partido!";
                 }
             }
         } else {
@@ -50,14 +51,17 @@ class AjaxController extends Controller
         return new Response(json_encode($response));
     }
 
-    private function addUserToPartido($partidoId, $userId, $posicion)
+    private function addUserToPartido($partidoId, $userId, $posicion, $quitar)
     {
         $em = $this->getDoctrine()->getManager();
         $partido = $em->getRepository('AppBundle:Partido')->find($partidoId);
-        $user = $em->getRepository('AppBundle:User')->find($userId);
+        $user = null;
 
-        if (!$partido || !$user) {
-            return false;
+        if (!$quitar) {
+            $user = $em->getRepository('AppBundle:User')->find($userId);
+            if (!$partido || !$user) {
+                return false;
+            }
         }
 
         switch ($posicion) {

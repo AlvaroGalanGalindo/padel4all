@@ -1,68 +1,98 @@
 {% extends '@App/base.html.twig' %}
 
 {% block body %}
-<div class="container">
+<div class="container entity-show-partido">
     <div class="content">
         <div class="page-header"><h2>Detalles de partido</h2></div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-3">
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Pista</th>
+                        <td>{{ partido.pista.propietario }} - {{ partido.pista.nombre }}</td>
+                    </tr>
+                    <tr>
+                        <th>Fecha</th>
+                        <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    </tr>
+                    </tbody>
+                </table>
 
-        <table>
-            <tbody>
-            <tr>
-                <th>Pista</th>
-                <td>{{ partido.pista.propietario }} - {{ partido.pista.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Fecha</th>
-                <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            </tbody>
-        </table>
-        <br/>
-        <row>
-            <div id="p1j1" class="col-sm-6">
-                {% if partido.p1j1 is not empty %}
-                    {{ partido.p1j1.nickNombre }}
-                {% else %}
-                    <a href="#" onclick="setJugadorPartido(this);">¡Apúntate!</a>
-                {% endif %}
-            </div>
-            <div id="p1j2" class="col-sm-6">
-                {% if partido.p1j2 is not empty %}
-                    {{ partido.p1j2.nickNombre }}
-                {% else %}
-                    <a href="#" onclick="setJugadorPartido(this);">¡Apúntate!</a>
-                {% endif %}
-            </div>
-        </row><row>
-            <div id="p2j1" class="col-sm-6">
-                {% if partido.p2j1 is not empty %}
-                    {{ partido.p2j1.nickNombre }}
-                {% else %}
-                    <a href="#" onclick="setJugadorPartido(this);">¡Apúntate!</a>
-                {% endif %}
-            </div>
-            <div id="p2j2" class="col-sm-6">
-                {% if partido.p2j2 is not empty %}
-                    {{ partido.p2j2.nickNombre }}
-                {% else %}
-                    <a href="#" onclick="setJugadorPartido(this);">¡Apúntate!</a>
-                {% endif %}
-            </div>
-        </row>
 
-        <br/><br/><br/>
-
-        <h4>Resultado</h4>
-        {% if partido.resultado is empty %}
-            <a href="{{ path('resultados_new', {'id_partido': partido.id }) }}">Introducir resultados</a>
-        {% else %}
-            <table>
-                <tr><td>{{ partido.resultado.set1p1 }}</td><td>-</td><td>{{ partido.resultado.set1p2 }}</td></tr>
-                <tr><td>{{ partido.resultado.set2p1 }}</td><td>-</td><td>{{ partido.resultado.set2p2 }}</td></tr>
-                <tr><td>{{ partido.resultado.set3p1 }}</td><td>-</td><td>{{ partido.resultado.set3p2 }}</td></tr>
-            </table>
-            <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
-        {% endif %}
+                <h4>Resultado</h4>
+                {% if partido.resultado is empty %}
+                    <a href="{{ path('resultados_new', {'id_partido': partido.id }) }}">Introducir resultados</a>
+                {% else %}
+                    <table>
+                        <tr><td>{{ partido.resultado.set1p1 }}</td><td>-</td><td>{{ partido.resultado.set1p2 }}</td></tr>
+                        <tr><td>{{ partido.resultado.set2p1 }}</td><td>-</td><td>{{ partido.resultado.set2p2 }}</td></tr>
+                        <tr><td>{{ partido.resultado.set3p1 }}</td><td>-</td><td>{{ partido.resultado.set3p2 }}</td></tr>
+                    </table>
+                    <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-sm-9">
+                <div class="container pista">
+                    <div class="row">
+                        <div class="jugador p1j1 col-xs-6">
+                            <div class="jugador-data">
+                                <div><img id="img-p1j1" class="{{ partido.p1j1 is empty ? 'libre' : 'ocupado' }}" src="{{ asset('images/cara.svg') }}"></div>
+                                <div id="p1j1">
+                                    {% if partido.p1j1 is not empty %}
+                                        <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
+                                        {{ partido.p1j1.nickNombre }}
+                                    {% else %}
+                                        <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jugador p2j1 col-xs-6">
+                            <div class="jugador-data">
+                                <div><img id="img-p2j1" class="{{ partido.p2j1 is empty ? 'libre' : 'ocupado' }}" src="{{ asset('images/cara.svg') }}"></div>
+                                <div id="p2j1">
+                                    {% if partido.p2j1 is not empty %}
+                                        <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
+                                        {{ partido.p2j1.nickNombre }}
+                                    {% else %}
+                                        <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="jugador p1j2 col-xs-6">
+                            <div class="jugador-data">
+                                <div><img id="img-p1j2" class="{{ partido.p1j2 is empty ? 'libre' : 'ocupado' }}" src="{{ asset('images/cara.svg') }}"></div>
+                                <div id="p1j2">
+                                    {% if partido.p1j2 is not empty %}
+                                        <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
+                                        {{ partido.p1j2.nickNombre }}
+                                    {% else %}
+                                        <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="jugador p2j2 col-xs-6">
+                            <div class="jugador-data">
+                                <div><img id="img-p2j2" class="{{ partido.p2j2 is empty ? 'libre' : 'ocupado' }}" src="{{ asset('images/cara.svg') }}"></div>
+                                <div id="p2j2">
+                                    {% if partido.p2j2 is not empty %}
+                                        <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
+                                        {{ partido.p2j2.nickNombre }}
+                                    {% else %}
+                                        <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <br/><br/><br/>
 
@@ -76,19 +106,25 @@
 
 
 <script>
-    function setJugadorPartido(posObj){
+    function setJugadorPartido(posObj, quitar){
         if ("{{ app.user }}" == "") {
             alert("Tienes que loguearte para poder apuntarte a un partido.");
             return false;
         }
         posId = posObj.parentNode.id;
         $.post('{{ path('ajax_usermatch') }}',
-            { partido_id: {{ partido.id }}, posicion: posId },
+            { partido_id: {{ partido.id }}, posicion: posId, quitar: quitar },
             function(response){
-                if(response.success){
-                    $("#"+posId).html(response.jugador);
-                }
                 alert(response.mensaje);
+                if(response.success){
+                    if (quitar) {
+                        $("#"+posId).html('<a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>');
+                        $('#img-'+posId).attr('class', 'libre');
+                    } else {
+                        $("#"+posId).html('<a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>' + response.jugador);
+                        $('#img-'+posId).attr('class', 'ocupado');
+                    }
+                }
             }, "json");
     }
 
