@@ -5,28 +5,30 @@
 {% endblock top %}
 
 {% block content %}
-    <div class="row portada">
-        <a href="{{ path("pista_index") }}">
-            <div class="col-xs-12 col-md-4 item-container">
-                <div class="item">
-                    <img class="img-responsive center-block" src="{{ asset("images/pista.png") }}"><div class="titulo">PISTAS</div>
+    <div class="container-fluid portada">
+        <div class="row ">
+            <a href="{{ path("pista_index") }}">
+                <div class="col-xs-12 col-sm-6 col-md-4 item-container">
+                    <div class="item">
+                        <img class="img-responsive center-block" src="{{ asset("images/pista.png") }}"><div class="titulo">PISTAS</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <a href="{{ path("partidos_index") }}">
-            <div class="col-xs-12 col-md-4 item-container">
-                <div class="item">
-                    <img class="img-responsive center-block" src="{{ asset("images/partido.png") }}"><div class="titulo">PARTIDOS</div>
+            </a>
+            <a href="{{ path("partidos_index") }}">
+                <div class="col-xs-12 col-sm-6 col-md-4 item-container">
+                    <div class="item">
+                        <img class="img-responsive center-block" src="{{ asset("images/partido.png") }}"><div class="titulo">PARTIDOS</div>
+                    </div>
                 </div>
-            </div>
-        </a>
-        <a href="{{ path("resultados_index") }}">
-            <div class="col-xs-12 col-md-4 item-container">
-                <div class="item">
-                    <img class="img-responsive center-block" src="{{ asset("images/resultado.png") }}"><div class="titulo">RESULTADOS</div>
+            </a>
+            <a href="{{ path("resultados_index") }}">
+                <div class="col-xs-12 col-sm-6 col-md-4 item-container">
+                    <div class="item">
+                        <img class="img-responsive center-block" src="{{ asset("images/resultado.png") }}"><div class="titulo">RESULTADOS</div>
+                    </div>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     </div>
 {% endblock %}
 

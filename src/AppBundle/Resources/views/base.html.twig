@@ -24,9 +24,8 @@
 
 
 {% block body_start %}
-    <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-10 cabecera center-block">
+    <div class="container-fluid cabecera">
+        <div class="col-xs-12 center-block">
             <div class="logo"><a href="{{ path("homepage") }}"><img class="img-responsive" src="{{ asset("images/logo.png") }}"></a></div>
             <div class="user-widget">
                 {% if app.user is not empty %}
@@ -36,19 +35,16 @@
                 {% endif %}
             </div>
         </div>
-        <div class="col-xs-1"></div>
     </div>
 {% endblock body_start %}
 
 
 {% block body %}
-    <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-10 contenido">
+    <div class="container-fluid">
+        <div class="row col-xs-12 contenido">
             {% block content %}
             {% endblock content %}
         </div>
-        <div class="col-xs-1"></div>
     </div>
 {% endblock body %}
 
