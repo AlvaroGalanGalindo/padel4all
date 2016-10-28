@@ -132,7 +132,7 @@
         $.post('{{ path('ajax_usermatch') }}',
             { partido_id: {{ partido.id }}, posicion: posId, quitar: quitar },
             function(response){
-                alert(response.mensaje);
+                //alert(response.mensaje);
                 if(response.success){
                     if (quitar) {
                         $("#"+posId).html('<a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>');
@@ -141,6 +141,9 @@
                         $("#"+posId).html('<a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>' + response.jugador);
                         $('#img-'+posId).attr('class', 'ocupado');
                     }
+                    $('#img-'+posId).removeClass("flip animated").addClass("flip animated").one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                        $(this).removeClass("flip animated");
+                    });
                 }
             }, "json");
     }

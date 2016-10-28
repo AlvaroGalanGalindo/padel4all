@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
 	clean: {
             js: ['web/js/*'],
-            css: ['web/css/*'],
+            css: ['web/css/style.min.css'],
         },
 
 	copy: {
