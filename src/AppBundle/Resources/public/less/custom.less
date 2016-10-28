@@ -143,7 +143,7 @@ body {
   }
 }
 
-.entity-show-resultado {
+.entity-show-resultado, .entity-show-partido {
   color: black;
   th, td {
     text-align: center;
@@ -163,10 +163,16 @@ body {
 }
 
 .entity-show-partido {
+  .pista-col {
+    min-height: 180px;
+  }
   .pista {
     width: 320px;
     height: 151px;
     background: lightskyblue url('../images/pista_padel.png');
+    .row {
+      padding: 0;
+    }
     .jugador {
       height: 75px;
       padding: 0;
@@ -177,10 +183,10 @@ body {
         display: table-cell;
         vertical-align: middle;
         .libre {
-          background-color: green;
+          background-color: springgreen;
         }
         .ocupado {
-          background-color: red;
+          background-color: orangered;
         }
         img {
           width: 30px;
@@ -201,6 +207,9 @@ body {
     .p2j1, .p2j2 {
       padding-right: 40px;
     }
+  }
+  .botonera {
+    margin-top: 40px;
   }
 }
 

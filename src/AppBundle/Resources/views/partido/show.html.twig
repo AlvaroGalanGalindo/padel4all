@@ -1,38 +1,24 @@
 {% extends '@App/base.html.twig' %}
 
-{% block body %}
-<div class="container entity-show-partido">
-    <div class="content">
+{% block content %}
+    <div class="content entity-show entity-show-partido">
         <div class="page-header"><h2>Detalles de partido</h2></div>
         <div class="row">
-            <div class="col-xs-12 col-sm-3">
-                <table>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                <table class="table">
                     <tbody>
                     <tr>
-                        <th>Pista</th>
+                        <th>Pista:</th>
                         <td>{{ partido.pista.propietario }} - {{ partido.pista.nombre }}</td>
                     </tr>
                     <tr>
-                        <th>Fecha</th>
-                        <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        <th>Fecha:</th>
+                        <td>{% if partido.fecha %}{{ partido.fecha|date('d-m-Y H:i') }}{% endif %}</td>
                     </tr>
                     </tbody>
                 </table>
-
-
-                <h4>Resultado</h4>
-                {% if partido.resultado is empty %}
-                    <a href="{{ path('resultados_new', {'id_partido': partido.id }) }}">Introducir resultados</a>
-                {% else %}
-                    <table>
-                        <tr><td>{{ partido.resultado.set1p1 }}</td><td>-</td><td>{{ partido.resultado.set1p2 }}</td></tr>
-                        <tr><td>{{ partido.resultado.set2p1 }}</td><td>-</td><td>{{ partido.resultado.set2p2 }}</td></tr>
-                        <tr><td>{{ partido.resultado.set3p1 }}</td><td>-</td><td>{{ partido.resultado.set3p2 }}</td></tr>
-                    </table>
-                    <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
-                {% endif %}
             </div>
-            <div class="col-xs-12 col-sm-9">
+            <div class="col-xs-12 col-sm-12 col-md-4 pista-col">
                 <div class="container pista">
                     <div class="row">
                         <div class="jugador p1j1 col-xs-6">
@@ -41,7 +27,7 @@
                                 <div id="p1j1">
                                     {% if partido.p1j1 is not empty %}
                                         <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
-                                        {{ partido.p1j1.nickNombre }}
+                                        {{ partido.p1j1.username }}
                                     {% else %}
                                         <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
                                     {% endif %}
@@ -54,7 +40,7 @@
                                 <div id="p2j1">
                                     {% if partido.p2j1 is not empty %}
                                         <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
-                                        {{ partido.p2j1.nickNombre }}
+                                        {{ partido.p2j1.username }}
                                     {% else %}
                                         <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
                                     {% endif %}
@@ -69,7 +55,7 @@
                                 <div id="p1j2">
                                     {% if partido.p1j2 is not empty %}
                                         <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
-                                        {{ partido.p1j2.nickNombre }}
+                                        {{ partido.p1j2.username }}
                                     {% else %}
                                         <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
                                     {% endif %}
@@ -82,7 +68,7 @@
                                 <div id="p2j2">
                                     {% if partido.p2j2 is not empty %}
                                         <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
-                                        {{ partido.p2j2.nickNombre }}
+                                        {{ partido.p2j2.username }}
                                     {% else %}
                                         <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
                                     {% endif %}
@@ -92,18 +78,49 @@
                     </div>
                 </div>
             </div>
+            <div class="col-xs-12 col-sm-12 col-md-4">
+                {% if partido.resultado is empty %}
+                    <h4>Resultado</h4>
+                    <a href="{{ path('resultados_new', {'id_partido': partido.id }) }}">Introducir resultados</a>
+                {% else %}
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <th class="titulo" colspan="3">Resultados</th>
+                        </tr>
+                        <tr>
+                            <td class="{{ partido.resultado.set1p1 > partido.resultado.set1p2 ? "win" : "lose" }}">{{ partido.resultado.set1p1 }}</td>
+                            <td class="titulo">SET 1</td>
+                            <td class="{{ partido.resultado.set1p1 < partido.resultado.set1p2 ? "win" : "lose" }}">{{ partido.resultado.set1p2 }}</td>
+                        </tr>
+                        <tr>
+                            <td class="{{ partido.resultado.set2p1 > partido.resultado.set2p2 ? "win" : "lose" }}">{{ partido.resultado.set2p1 }}</td>
+                            <td class="titulo">SET 2</td>
+                            <td class="{{ partido.resultado.set2p1 < partido.resultado.set2p2 ? "win" : "lose" }}">{{ partido.resultado.set2p2 }}</td>
+                        </tr>
+                        <tr>
+                            <td class="{{ partido.resultado.set3p1 > partido.resultado.set3p2 ? "win" : "lose" }}">{{ partido.resultado.set3p1 }}</td>
+                            <td class="titulo">SET 3</td>
+                            <td class="{{ partido.resultado.set3p1 < partido.resultado.set3p2 ? "win" : "lose" }}">{{ partido.resultado.set3p2 }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
+                {% endif %}
+            </div>
         </div>
-
-        <br/><br/><br/>
-
-        {{ form_start(delete_form) }}
-            <input type="submit" value="Borrar" class="btn btn-danger">
-            <a href="{{ path('partidos_index') }}" class="btn btn-info">Volver al listado</a>
-            <a href="{{ path('partidos_edit', { 'id': partido.id }) }}" class="btn btn-success">Editar</a>
-        {{ form_end(delete_form) }}
+        <div class="row botonera">
+            <div class="col-xs-12 col-sm-4">
+                <a href="{{ path('partidos_edit', { 'id': partido.id }) }}" class="btn btn-success">Editar</a>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <a href="{{ path('partidos_index') }}" class="btn btn-info">Volver al listado</a>
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                {{ form_start(delete_form) }}<input type="submit" value="Borrar" class="btn btn-danger">{{ form_end(delete_form) }}
+            </div>
+        </div>
     </div>
-</div>
-
 
 <script>
     function setJugadorPartido(posObj, quitar){

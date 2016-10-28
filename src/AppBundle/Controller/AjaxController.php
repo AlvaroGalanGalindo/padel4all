@@ -28,7 +28,7 @@ class AjaxController extends Controller
         $quitar = "true" == $request->get('quitar');
         $partidoId = $request->get('partido_id');
         $jugador = $this->getUser();
-        $jugador_nombre = $jugador->getNickNombre();
+        $jugador_nombre = $jugador->getUsername();
         $resultado = false;
         $mensaje = "";
 
