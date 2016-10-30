@@ -1,0 +1,48 @@
+{% extends '@App/base.html.twig' %}
+
+{% block content %}
+    <div class="page-header">
+        <h2>Perfil de usuario</h2>
+    </div>
+
+    <div class="content entity-show entity-show-usuario">
+        <div class="row">
+            <div class="col-xs-12 col-sm-2 container">
+                <div class="img-perfil">
+                    <img class="img-responsive flip animated" src="{{ asset("images/perfil.png") }}">
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-10 container perfil-info">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 etiqueta">Nombre de usuario:</div>
+                    <div class="col-xs-12 col-sm-10 valor">{{ user.username }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 etiqueta">Nombre:</div>
+                    <div class="col-xs-12 col-sm-10 valor">{{ user.nombre }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 etiqueta">Apellidos:</div>
+                    <div class="col-xs-12 col-sm-10 valor">{{ user.apellidos }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 etiqueta">Teléfono:</div>
+                    <div class="col-xs-12 col-sm-10 valor">{{ user.telefono }}</div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-2 etiqueta">Email:</div>
+                    <div class="col-xs-12 col-sm-10 valor">{{ user.email }}</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container botonera">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    {#<a href="{{ path('homepage', { 'id': user.id }) }}" class="btn btn-success">Editar</a>#}
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
