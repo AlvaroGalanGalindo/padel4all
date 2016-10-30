@@ -15,7 +15,12 @@ class PistaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('user', 'entity', array('class' => 'AppBundle\Entity\User', 'required' => false, 'label' => 'Creador'))
+            ->add('user', 'entity', array(
+                'class' => 'AppBundle\Entity\User',
+                'required' => true,
+                'label' => 'Creador',
+                'disabled' => true
+            ))
             ->add('nombre')
             ->add('propietario')
             ->add('direccion', 'text', array('label' => 'Dirección', 'required' => false))

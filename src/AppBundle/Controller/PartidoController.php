@@ -67,6 +67,9 @@ class PartidoController extends Controller
             }
         }
 
+        $user = $this->get('security.context')->getToken()->getUser();
+        $form->get('user')->setData($user);
+
         return $this->render('@App/partido/edit.html.twig', array(
             'partido' => $partido,
             'form' => $form->createView(),

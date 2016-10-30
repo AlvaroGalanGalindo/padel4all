@@ -53,6 +53,9 @@ class PistaController extends Controller
             return $this->redirectToRoute('pista_show', array('id' => $pistum->getId()));
         }
 
+        $user = $this->get('security.context')->getToken()->getUser();
+        $form->get('user')->setData($user);
+
         return $this->render('AppBundle:pista:edit.html.twig', array(
             'pistum' => $pistum,
             'form' => $form->createView(),
