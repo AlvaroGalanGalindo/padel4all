@@ -13,7 +13,9 @@
 
         <div class="row">
             {% include '@App/helper/form-group.html.twig' with {'campo': form.partido, 'icono': 'border-all'} %}
-            <div class="col-xs-6 row-pareja">{{ pareja1 }}</div><div class="col-xs-6 row-pareja">{{ pareja2 }}</div>
+            <div class="col-xs-12 col-sm-5 row-pareja">{{ pareja1 }}</div>
+            <div class="col-xs-12 col-sm-2 row-pareja">vs.</div>
+            <div class="col-xs-12 col-sm-5 row-pareja">{{ pareja2 }}</div>
             {% include '@App/helper/form-group-resultado.html.twig' with {'campo1': form.set1p1,'campo2': form.set1p2 } %}
             {% include '@App/helper/form-group-resultado.html.twig' with {'campo1': form.set2p1,'campo2': form.set2p2 } %}
             {% include '@App/helper/form-group-resultado.html.twig' with {'campo1': form.set3p1,'campo2': form.set3p2 } %}

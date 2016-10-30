@@ -1,15 +1,17 @@
-<div class="col-xs-5">
-    <div class="input-group">
-        <span class="input-group-addon"><span class="zmdi zmdi-check-square"></span></span>
-        {{ form_widget(campo1, {'attr': {'class': 'form-control'}}) }}
+<div class="row row-resultado">
+    <div class="col-xs-12 col-sm-3">
+        <div class="input-group">
+            <span class="input-group-addon"><span class="zmdi zmdi-check"></span></span>
+            {{ form_widget(campo1, {'attr': {'class': 'form-control'}}) }}
+        </div>
     </div>
-</div>
 
-{{ form_label(campo1, null, {'label_attr': {'class': 'control-label col-xs-2 label-center'}}) }}
+    {{ form_label(campo1, null, {'label_attr': {'class': 'control-label col-xs-12 col-sm-6 label-center'}}) }}
 
-<div class="col-xs-5">
-    <div class="input-group">
-        <span class="input-group-addon"><span class="zmdi zmdi-check-square"></span></span>
-        {{ form_widget(campo2, {'attr': {'class': 'form-control'}}) }}
+    <div class="col-xs-12 col-sm-3">
+        <div class="input-group">
+            <span class="input-group-addon"><span class="zmdi zmdi-check"></span></span>
+            {{ form_widget(campo2, {'attr': {'class': 'form-control'}}) }}
+        </div>
     </div>
 </div>
