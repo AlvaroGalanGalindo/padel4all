@@ -2,26 +2,52 @@
 
 {% set nuevo = modo == "new" %}
 
-{% block body %}
-    <div class="content">
-        <div class="page-header"><h2>{{ nuevo ? "Nueva" : "Edición de" }} pista</h2></div>
+{% block content %}
+    <div class="page-header">
+        <h2>{{ nuevo ? "Nueva" : "Edición de" }} pista</h2>
+    </div>
+
+    <div class="content form-edit form-edit-pista">
         {{ form_start(form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
         {{ form_errors(form) }}
 
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.user, 'icono': 'account'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.nombre, 'icono': 'border-all'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.propietario, 'icono': 'account-box-mail'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.direccion, 'icono': 'directions'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.localidad, 'icono': 'pin'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.provincia, 'icono': 'pin-drop'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.telefono, 'icono': 'smartphone-android'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.horario, 'icono': 'time'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.precio, 'icono': 'money'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.tipo, 'icono': 'tag'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.pared, 'icono': 'tag'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.cubierta, 'icono': 'tag'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.climatizada, 'icono': 'tag'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.puertas, 'icono': 'tag'} %}
+        <div class="row">
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.user, 'icono': 'account'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.nombre, 'icono': 'border-all'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.propietario, 'icono': 'account-box-mail'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.direccion, 'icono': 'directions'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.localidad, 'icono': 'pin'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.provincia, 'icono': 'pin-drop'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.telefono, 'icono': 'smartphone-android'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.horario, 'icono': 'time'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.precio, 'icono': 'money'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.tipo, 'icono': 'tag'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.pared, 'icono': 'tag'} %}
+
+            <div class="row">
+                {{ form_label(form.cubierta, null, {'label_attr': {'class': 'control-label col-xs-12 col-sm-2'}}) }}
+                <div class="col-xs-12 col-sm-2">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="zmdi zmdi-tag"></span></span>
+                        {{ form_widget(form.cubierta, {'attr': {'class': 'form-control input-check'}}) }}
+                    </div>
+                </div>
+                {{ form_label(form.climatizada, null, {'label_attr': {'class': 'control-label col-xs-12 col-sm-2'}}) }}
+                <div class="col-xs-12 col-sm-2">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="zmdi zmdi-tag"></span></span>
+                        {{ form_widget(form.climatizada, {'attr': {'class': 'form-control input-check'}}) }}
+                    </div>
+                </div>
+                {{ form_label(form.puertas, null, {'label_attr': {'class': 'control-label col-xs-12 col-sm-2'}}) }}
+                <div class="col-xs-12 col-sm-2">
+                    <div class="input-group">
+                        <span class="input-group-addon"><span class="zmdi zmdi-tag"></span></span>
+                        {{ form_widget(form.puertas, {'attr': {'class': 'form-control input-check'}}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="pull-right">
             <input type="submit" value="Guardar" class="btn btn-success" />
@@ -31,7 +57,7 @@
 
         {% if not nuevo %}
             {{ form_start(delete_form) }}
-                <input type="submit" value="Borrar" class="btn btn-danger">
+            <input type="submit" value="Borrar" class="btn btn-danger">
             {{ form_end(form) }}
         {% endif %}
     </div>
