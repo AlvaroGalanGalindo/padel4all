@@ -18,10 +18,10 @@ class PartidoType extends AbstractType
         $builder
             ->add('fecha', 'datetime', array('date_widget' => "single_text", 'time_widget' => "single_text"))
             ->add('pista')
-            ->add('p1j1')
-            ->add('p1j2')
-            ->add('p2j1')
-            ->add('p2j2')
+            ->add('p1j1', 'entity', array('class' => 'AppBundle\Entity\User', 'required' => false, 'label' => 'Pareja 1'))
+            ->add('p1j2', 'entity', array('class' => 'AppBundle\Entity\User', 'required' => false, 'label' => 'Pareja 1'))
+            ->add('p2j1', 'entity', array('class' => 'AppBundle\Entity\User', 'required' => false, 'label' => 'Pareja 2'))
+            ->add('p2j2', 'entity', array('class' => 'AppBundle\Entity\User', 'required' => false, 'label' => 'Pareja 2'))
         ;
     }
     

@@ -1,0 +1,17 @@
+<div class="row row-partido">
+    {{ form_label(campo1, null, {'label_attr': {'class': 'control-label col-xs-12 col-sm-2 label-center'}}) }}
+
+    <div class="col-xs-12 col-sm-5">
+        <div class="input-group">
+            <span class="input-group-addon"><span class="zmdi zmdi-{{ icono }}"></span></span>
+            {{ form_widget(campo1, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-5">
+        <div class="input-group">
+            <span class="input-group-addon"><span class="zmdi zmdi-{{ icono }}"></span></span>
+            {{ form_widget(campo2, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+</div>

@@ -21,16 +21,22 @@
             {% include '@App/helper/form-group-resultado.html.twig' with {'campo1': form.set3p1,'campo2': form.set3p2 } %}
         </div>
 
-        <div class="pull-right">
-            <input type="submit" value="Guardar" class="btn btn-success" />
-            <a href="{{ path('resultados_index') }}" class="btn btn-info">Volver al listado</a>
+        <div class="row botonera">
+            <div class="col-xs-12 col-sm-4">
+                {% if not nuevo %}
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Borrar" class="btn btn-danger">
+                    {{ form_end(delete_form) }}
+                {% endif %}
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+            <div class="col-xs-12 col-sm-4">
+                <a href="{{ path('resultados_index') }}" class="btn btn-info">Volver al listado</a>
+            </div>
         </div>
-        {{ form_end(form) }}
 
-        {% if not nuevo %}
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Borrar" class="btn btn-danger">
-            {{ form_end(delete_form) }}
-        {% endif %}
+        {{ form_end(form) }}
     </div>
 {% endblock %}
