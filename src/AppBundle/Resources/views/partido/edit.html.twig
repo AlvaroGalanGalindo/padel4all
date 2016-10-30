@@ -1,30 +1,30 @@
 {% extends '@App/base.html.twig' %}
 
+{% set nuevo = modo == "new" %}
+
 {% block body %}
     <div class="container">
-        <div class="content">
-            <div class="page-header"><h2>Edición de partido</h2></div>
-            {{ form_start(edit_form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
-            {{ form_errors(edit_form) }}
+        <div class="page-header"><h2>{{ nuevo ? "Nuevo" : "Edición de" }} partido</h2></div>
+        {{ form_start(form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
+        {{ form_errors(form) }}
 
-            {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.fecha, 'icono': 'lock'} %}
-            {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.pista, 'icono': 'pencil'} %}
-            {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.p1j1, 'icono': 'user'} %}
-            {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.p1j2, 'icono': 'map-marker'} %}
-            {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.p2j1, 'icono': 'map-marker'} %}
-            {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.p2j2, 'icono': 'map-marker'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.pista, 'icono': 'border-all'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.fecha, 'icono': 'time'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.p1j1, 'icono': 'accounts'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.p1j2, 'icono': 'accounts'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.p2j1, 'icono': 'accounts-outline'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.p2j2, 'icono': 'accounts-outline'} %}
 
-            {#{{ form_widget(edit_form) }}#}
+        <div class="pull-right">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+            <a href="{{ path('partidos_index') }}" class="btn btn-info">Volver al listado</a>
+        </div>
+        {{ form_end(form) }}
 
-            <div class="pull-right">
-                <input type="submit" value="Guardar" class="btn btn-success" />
-                <a href="{{ path('partidos_index') }}" class="btn btn-info">Volver al listado</a>
-            </div>
-            {{ form_end(edit_form) }}
-
+        {% if not nuevo %}
             {{ form_start(delete_form) }}
             <input type="submit" value="Borrar" class="btn btn-danger">
             {{ form_end(delete_form) }}
-        </div>
+        {% endif %}
     </div>
 {% endblock %}

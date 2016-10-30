@@ -57,9 +57,10 @@ class ResultadoController extends Controller
             return $this->redirectToRoute('partidos_show', array('id' => $resultado->getPartido()->getId()));
         }
 
-        return $this->render('@App/resultado/new.html.twig', array(
+        return $this->render('@App/resultado/edit.html.twig', array(
             'resultado' => $resultado,
             'form' => $form->createView(),
+            'modo' => 'new',
         ));
     }
 
@@ -101,8 +102,9 @@ class ResultadoController extends Controller
 
         return $this->render('@App/resultado/edit.html.twig', array(
             'resultado' => $resultado,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'modo' => 'edit',
         ));
     }
 

@@ -53,9 +53,10 @@ class PistaController extends Controller
             return $this->redirectToRoute('pista_show', array('id' => $pistum->getId()));
         }
 
-        return $this->render('AppBundle:pista:new.html.twig', array(
+        return $this->render('AppBundle:pista:edit.html.twig', array(
             'pistum' => $pistum,
             'form' => $form->createView(),
+            'modo' => "new",
         ));
     }
 
@@ -97,8 +98,9 @@ class PistaController extends Controller
 
         return $this->render('AppBundle:pista:edit.html.twig', array(
             'pistum' => $pistum,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'modo' => 'edit',
         ));
     }
 

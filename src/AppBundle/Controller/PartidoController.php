@@ -67,9 +67,10 @@ class PartidoController extends Controller
             }
         }
 
-        return $this->render('@App/partido/new.html.twig', array(
+        return $this->render('@App/partido/edit.html.twig', array(
             'partido' => $partido,
             'form' => $form->createView(),
+            'modo' => 'new',
         ));
     }
 
@@ -121,8 +122,9 @@ class PartidoController extends Controller
 
         return $this->render('@App/partido/edit.html.twig', array(
             'partido' => $partido,
-            'edit_form' => $editForm->createView(),
+            'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'modo' => 'edit',
         ));
     }
 

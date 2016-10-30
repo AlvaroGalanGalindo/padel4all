@@ -1,38 +1,38 @@
 {% extends '@App/base.html.twig' %}
 
+{% set nuevo = modo == "new" %}
+
 {% block body %}
-    <div class="container">
-        <div class="content">
-            <div class="page-header"><h2>Edición de pista</h2></div>
-            {{ form_start(edit_form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
-                {{ form_errors(edit_form) }}
+    <div class="content">
+        <div class="page-header"><h2>{{ nuevo ? "Nueva" : "Edición de" }} pista</h2></div>
+        {{ form_start(form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
+        {{ form_errors(form) }}
 
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.user, 'icono': 'lock'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.nombre, 'icono': 'pencil'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.propietario, 'icono': 'user'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.direccion, 'icono': 'map-marker'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.localidad, 'icono': 'map-marker'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.provincia, 'icono': 'map-marker'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.telefono, 'icono': 'iphone'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.horario, 'icono': 'clock'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.precio, 'icono': 'euro'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.tipo, 'icono': 'lock'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.pared, 'icono': 'lock'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.cubierta, 'icono': 'lock'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.climatizada, 'icono': 'lock'} %}
-                {% include '@App/helper/form-group.html.twig' with {'campo': edit_form.puertas, 'icono': 'lock'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.user, 'icono': 'account'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.nombre, 'icono': 'border-all'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.propietario, 'icono': 'account-box-mail'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.direccion, 'icono': 'directions'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.localidad, 'icono': 'pin'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.provincia, 'icono': 'pin-drop'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.telefono, 'icono': 'smartphone-android'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.horario, 'icono': 'time'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.precio, 'icono': 'money'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.tipo, 'icono': 'tag'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.pared, 'icono': 'tag'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.cubierta, 'icono': 'tag'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.climatizada, 'icono': 'tag'} %}
+        {% include '@App/helper/form-group.html.twig' with {'campo': form.puertas, 'icono': 'tag'} %}
 
-                {#{{ form_widget(edit_form) }}#}
+        <div class="pull-right">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+            <a href="{{ path('pista_index') }}" class="btn btn-info">Volver al listado</a>
+        </div>
+        {{ form_end(form) }}
 
-                <div class="pull-right">
-                    <input type="submit" value="Guardar" class="btn btn-success" />
-                    <a href="{{ path('pista_index') }}" class="btn btn-info">Volver al listado</a>
-                </div>
-            {{ form_end(edit_form) }}
-
+        {% if not nuevo %}
             {{ form_start(delete_form) }}
                 <input type="submit" value="Borrar" class="btn btn-danger">
-            {{ form_end(delete_form) }}
-        </div>
+            {{ form_end(form) }}
+        {% endif %}
     </div>
 {% endblock %}
