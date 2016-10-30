@@ -1,0 +1,32 @@
+{% extends '@App/base.html.twig' %}
+
+{% block content %}
+    <div class="content user-register">
+        <div class="container">
+            <div class="page-header">
+                <h2>¡Únete a padel4all!</h2>
+            </div>
+
+            {{ form_start(form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
+            {{ form_errors(form) }}
+
+            <div class="row">
+                {% include '@App/helper/form-group.html.twig' with {'campo': form.username, 'icono': 'account'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': form.email, 'icono': 'email'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': form.plainPassword.first, 'icono': 'lock'} %}
+                {% include '@App/helper/form-group.html.twig' with {'campo': form.plainPassword.second, 'icono': 'lock'} %}
+                {{ form_rest(form) }}
+            </div>
+
+            <div class="row">
+                <div class="row botonera">
+                    <div class="col-xs-12">
+                        <input type="submit" value="Entrar" class="btn btn-info" />
+                    </div>
+                </div>
+            </div>
+
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

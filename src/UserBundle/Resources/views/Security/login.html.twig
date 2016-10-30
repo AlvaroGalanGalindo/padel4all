@@ -1,34 +1,41 @@
 {% extends '@App/base.html.twig' %}
 
 {% block content %}
-    <div class="container">
-        {% trans_default_domain 'FOSUserBundle' %}
-
-        {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-            {% if csrf_token %}
-                <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-            {% endif %}
-
-            <h2 class="form-signin-heading">¡Entra en el sistema!</h2>
-            
-            <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
-            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="Nombre de usuario" required autofocus />
-
-            <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
-            <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña" required />
-
-            <div class="checkbox">
-                <label>
-                    <input type="checkbox" value="remember-me" id="remember_me" name="_remember_me"> Recuérdame
-                </label>
+    <div class="content user-login">
+        <div class="container">
+            <div class="page-header">
+                <h2>¡Entra en padel4all!</h2>
             </div>
 
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
 
-            <input type="submit" id="_submit" name="_submit" value="Entrar" class="btn btn-lg btn-primary btn-block"/>
-        </form>
+            <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
+
+                <label for="username" class="sr-only">{{ 'security.login.username'|trans }}</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="zmdi zmdi-account"></span></span>
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control" placeholder="Nombre de usuario" required autofocus />
+                </div>
+
+                <label for="password" class="sr-only">{{ 'security.login.password'|trans }}</label>
+                <div class="input-group">
+                    <span class="input-group-addon"><span class="zmdi zmdi-lock"></span></span>
+                    <input type="password" id="password" name="_password" class="form-control" placeholder="Contraseña" required />
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me" id="remember_me" name="_remember_me"> Recuérdame
+                    </label>
+                </div>
+
+                <input type="submit" value="Entrar" class="btn btn-info" />
+            </form>
+        </div>
     </div>
 {% endblock %}
