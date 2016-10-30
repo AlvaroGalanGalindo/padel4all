@@ -24,7 +24,7 @@ class Partido
 
     /**
      * @ORM\ManyToOne(
-     *      targetEntity="AppBundle\Entity\User",
+     *      targetEntity="UserBundle\Entity\User",
      *      inversedBy="partidos"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -56,7 +56,7 @@ class Partido
 
     /**
      * @ORM\ManyToOne(
-     *      targetEntity="AppBundle\Entity\User",
+     *      targetEntity="UserBundle\Entity\User",
      *      inversedBy="partidos_p1j1"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -65,7 +65,7 @@ class Partido
 
     /**
      * @ORM\ManyToOne(
-     *      targetEntity="AppBundle\Entity\User",
+     *      targetEntity="UserBundle\Entity\User",
      *      inversedBy="partidos_p1j2"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -74,7 +74,7 @@ class Partido
 
     /**
      * @ORM\ManyToOne(
-     *      targetEntity="AppBundle\Entity\User",
+     *      targetEntity="UserBundle\Entity\User",
      *      inversedBy="partidos_p2j1"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -83,7 +83,7 @@ class Partido
 
     /**
      * @ORM\ManyToOne(
-     *      targetEntity="AppBundle\Entity\User",
+     *      targetEntity="UserBundle\Entity\User",
      *      inversedBy="partidos_p2j2"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -114,10 +114,10 @@ class Partido
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \UserBundle\Entity\User $user
      * @return Partido
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -127,7 +127,7 @@ class Partido
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User
+     * @return \UserBundle\Entity\User
      */
     public function getUser()
     {
@@ -222,10 +222,10 @@ class Partido
     /**
      * Set p1j1
      *
-     * @param \AppBundle\Entity\User $p1j1
+     * @param \UserBundle\Entity\User $p1j1
      * @return Partido
      */
-    public function setP1j1(\AppBundle\Entity\User $p1j1 = null)
+    public function setP1j1(\UserBundle\Entity\User $p1j1 = null)
     {
         $this->p1j1 = $p1j1;
 
@@ -235,7 +235,7 @@ class Partido
     /**
      * Get p1j1
      *
-     * @return \AppBundle\Entity\User 
+     * @return \UserBundle\Entity\User
      */
     public function getP1j1()
     {
@@ -245,10 +245,10 @@ class Partido
     /**
      * Set p1j2
      *
-     * @param \AppBundle\Entity\User $p1j2
+     * @param \UserBundle\Entity\User $p1j2
      * @return Partido
      */
-    public function setP1j2(\AppBundle\Entity\User $p1j2 = null)
+    public function setP1j2(\UserBundle\Entity\User $p1j2 = null)
     {
         $this->p1j2 = $p1j2;
 
@@ -258,7 +258,7 @@ class Partido
     /**
      * Get p1j2
      *
-     * @return \AppBundle\Entity\User 
+     * @return \UserBundle\Entity\User
      */
     public function getP1j2()
     {
@@ -268,10 +268,10 @@ class Partido
     /**
      * Set p2j1
      *
-     * @param \AppBundle\Entity\User $p2j1
+     * @param \UserBundle\Entity\User $p2j1
      * @return Partido
      */
-    public function setP2j1(\AppBundle\Entity\User $p2j1 = null)
+    public function setP2j1(\UserBundle\Entity\User $p2j1 = null)
     {
         $this->p2j1 = $p2j1;
 
@@ -281,7 +281,7 @@ class Partido
     /**
      * Get p2j1
      *
-     * @return \AppBundle\Entity\User 
+     * @return \UserBundle\Entity\User
      */
     public function getP2j1()
     {
@@ -291,10 +291,10 @@ class Partido
     /**
      * Set p2j2
      *
-     * @param \AppBundle\Entity\User $p2j2
+     * @param \UserBundle\Entity\User $p2j2
      * @return Partido
      */
-    public function setP2j2(\AppBundle\Entity\User $p2j2 = null)
+    public function setP2j2(\UserBundle\Entity\User $p2j2 = null)
     {
         $this->p2j2 = $p2j2;
 
@@ -304,14 +304,14 @@ class Partido
     /**
      * Get p2j2
      *
-     * @return \AppBundle\Entity\User 
+     * @return \UserBundle\Entity\User
      */
     public function getP2j2()
     {
         return $this->p2j2;
     }
 
-    public function UserInPartido(User $user) {
+    public function UserInPartido(\UserBundle\Entity\User $user) {
         return $this->p1j1 == $user || $this->p1j2 == $user || $this->p2j1 == $user || $this->p2j2 == $user;
     }
 

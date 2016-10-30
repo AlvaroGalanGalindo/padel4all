@@ -12,7 +12,7 @@
         {{ form_errors(form) }}
 
         <div class="row">
-            {% include '@App/helper/form-group.html.twig' with {'campo': form.user, 'icono': 'border-all'} %}
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.user, 'icono': 'account'} %}
             {% include '@App/helper/form-group.html.twig' with {'campo': form.pista, 'icono': 'border-all'} %}
             {% include '@App/helper/form-group.html.twig' with {'campo': form.fecha, 'icono': 'time'} %}
             {% include '@App/helper/form-group-pista.html.twig' with {'campo1': form.p1j1, 'campo2': form.p1j2, 'icono': 'accounts' } %}

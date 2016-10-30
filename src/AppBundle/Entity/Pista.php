@@ -119,7 +119,7 @@ class Pista
 
     /**
      * @ORM\ManyToOne(
-     *      targetEntity="AppBundle\Entity\User",
+     *      targetEntity="UserBundle\Entity\User",
      *      inversedBy="pistas"
      * )
      * @ORM\JoinColumn(onDelete="CASCADE")
@@ -453,10 +453,10 @@ class Pista
     /**
      * Set user
      *
-     * @param \AppBundle\Entity\User $user
+     * @param \UserBundle\Entity\User $user
      * @return Pista
      */
-    public function setUser(\AppBundle\Entity\User $user = null)
+    public function setUser(\UserBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -466,7 +466,7 @@ class Pista
     /**
      * Get user
      *
-     * @return \AppBundle\Entity\User 
+     * @return \UserBundle\Entity\User
      */
     public function getUser()
     {
