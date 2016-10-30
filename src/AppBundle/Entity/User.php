@@ -42,6 +42,11 @@ class User extends BaseUser
     protected $pistas;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="user")
+     */
+    protected $partidos;
+
+    /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="p1j1")
      */
     protected $partidos_p1j1;
@@ -66,6 +71,7 @@ class User extends BaseUser
     {
         parent::__construct();
         $this->pistas = new ArrayCollection();
+        $this->partidos = new ArrayCollection();
         $this->partidos_p1j1 = new ArrayCollection();
         $this->partidos_p1j2 = new ArrayCollection();
         $this->partidos_p2j1 = new ArrayCollection();
@@ -181,6 +187,39 @@ class User extends BaseUser
     public function getPistas()
     {
         return $this->pistas;
+    }
+
+    /**
+     * Add partidos
+     *
+     * @param \AppBundle\Entity\Pista $pistas
+     * @return Pista
+     */
+    public function addPartido(\AppBundle\Entity\Partido $partido)
+    {
+        $this->partidos[] = $partido;
+
+        return $this;
+    }
+
+    /**
+     * Remove partidos
+     *
+     * @param \AppBundle\Entity\Pista $pistas
+     */
+    public function removePartido(\AppBundle\Entity\Partido $partido)
+    {
+        $this->partidos->removeElement($partido);
+    }
+
+    /**
+     * Get partidos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPartidos()
+    {
+        return $this->partidos;
     }
 
     /**

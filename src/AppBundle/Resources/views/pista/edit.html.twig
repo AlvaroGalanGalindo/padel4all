@@ -50,21 +50,24 @@
         </div>
 
         <div class="row botonera">
-            <div class="col-xs-12 col-sm-4">
-                {% if not nuevo %}
-                    {{ form_start(delete_form) }}
-                    <input type="submit" value="Borrar" class="btn btn-danger">
-                    {{ form_end(form) }}
-                {% endif %}
-            </div>
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
                 <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
                 <a href="{{ path('pista_index') }}" class="btn btn-info">Volver al listado</a>
             </div>
         </div>
 
         {{ form_end(form) }}
+
+        {% if not nuevo %}
+            <div class="row botonera">
+                <div class="col-xs-12">
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Borrar" class="btn btn-danger">
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

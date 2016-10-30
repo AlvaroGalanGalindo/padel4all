@@ -12,6 +12,7 @@
         {{ form_errors(form) }}
 
         <div class="row">
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.user, 'icono': 'border-all'} %}
             {% include '@App/helper/form-group.html.twig' with {'campo': form.pista, 'icono': 'border-all'} %}
             {% include '@App/helper/form-group.html.twig' with {'campo': form.fecha, 'icono': 'time'} %}
             {% include '@App/helper/form-group-pista.html.twig' with {'campo1': form.p1j1, 'campo2': form.p1j2, 'icono': 'accounts' } %}
@@ -19,21 +20,24 @@
         </div>
 
         <div class="row botonera">
-            <div class="col-xs-12 col-sm-4">
-                {% if not nuevo %}
-                    {{ form_start(delete_form) }}
-                    <input type="submit" value="Borrar" class="btn btn-danger">
-                    {{ form_end(delete_form) }}
-                {% endif %}
-            </div>
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
                 <input type="submit" value="Guardar" class="btn btn-success" />
             </div>
-            <div class="col-xs-12 col-sm-4">
+            <div class="col-xs-12 col-sm-6">
                 <a href="{{ path('partidos_index') }}" class="btn btn-info">Volver al listado</a>
             </div>
         </div>
 
         {{ form_end(form) }}
+
+        {% if not nuevo %}
+            <div class="row botonera">
+                <div class="col-xs-12">
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Borrar" class="btn btn-danger">
+                    {{ form_end(delete_form) }}
+                </div>
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

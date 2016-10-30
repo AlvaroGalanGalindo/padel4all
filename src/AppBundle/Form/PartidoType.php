@@ -16,6 +16,7 @@ class PartidoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('user', 'entity', array('class' => 'AppBundle\Entity\User', 'required' => false, 'label' => 'Creador'))
             ->add('fecha', 'datetime', array('date_widget' => "single_text", 'time_widget' => "single_text"))
             ->add('pista')
             ->add('p1j1', 'entity', array('class' => 'AppBundle\Entity\User', 'required' => false, 'label' => 'Pareja 1'))

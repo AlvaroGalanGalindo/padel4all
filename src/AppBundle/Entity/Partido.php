@@ -23,6 +23,15 @@ class Partido
     private $id;
 
     /**
+     * @ORM\ManyToOne(
+     *      targetEntity="AppBundle\Entity\User",
+     *      inversedBy="partidos"
+     * )
+     * @ORM\JoinColumn(onDelete="CASCADE")
+     */
+    protected $user;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="fecha", type="datetime")
@@ -100,6 +109,29 @@ class Partido
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \AppBundle\Entity\User $user
+     * @return Partido
+     */
+    public function setUser(\AppBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \AppBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
