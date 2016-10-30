@@ -54,13 +54,18 @@ class ResultadoController extends Controller
             $em->persist($resultado);
             $em->flush();
 
-            return $this->redirectToRoute('partidos_show', array('id' => $resultado->getPartido()->getId()));
+            return $this->redirectToRoute('partidos_show', array('id' => $partido->getId()));
         }
+
+        $pareja1 = $partido->getP1J1() . " - " . $partido->getP1J2();
+        $pareja2 = $partido->getP2J1() . " - " . $partido->getP2J2();
 
         return $this->render('@App/resultado/edit.html.twig', array(
             'resultado' => $resultado,
             'form' => $form->createView(),
             'modo' => 'new',
+            'pareja1' => $pareja1,
+            'pareja2' => $pareja2,
         ));
     }
 
@@ -91,20 +96,26 @@ class ResultadoController extends Controller
         $deleteForm = $this->createDeleteForm($resultado);
         $editForm = $this->createForm('AppBundle\Form\ResultadoType', $resultado);
         $editForm->handleRequest($request);
+        $partido = $resultado->getPartido();
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($resultado);
             $em->flush();
 
-            return $this->redirectToRoute('partidos_show', array('id' => $resultado->getPartido()->getId()));
+            return $this->redirectToRoute('partidos_show', array('id' => $partido->getId()));
         }
+
+        $pareja1 = $partido->getP1J1() . " - " . $partido->getP1J2();
+        $pareja2 = $partido->getP2J1() . " - " . $partido->getP2J2();
 
         return $this->render('@App/resultado/edit.html.twig', array(
             'resultado' => $resultado,
             'form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
             'modo' => 'edit',
+            'pareja1' => $pareja1,
+            'pareja2' => $pareja2,
         ));
     }
 

@@ -3,18 +3,21 @@
 {% set nuevo = modo == "new" %}
 
 {% block content %}
-    <div class="container">
-        <div class="page-header"><h2>{{ nuevo ? "Nuevo" : "Edición de" }} resultado</h2></div>
+    <div class="page-header">
+        <h2>{{ nuevo ? "Nuevo" : "Edición de" }} resultado</h2>
+    </div>
+
+    <div class="content form-edit">
         {{ form_start(form, {'attr': {'class': 'bs-example form-horizontal'}}) }}
         {{ form_errors(form) }}
 
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.partido, 'icono': 'border-all'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.set1p1, 'icono': 'check-square'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.set1p2, 'icono': 'check-square'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.set2p1, 'icono': 'check-square'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.set2p2, 'icono': 'check-square'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.set3p1, 'icono': 'check-square'} %}
-        {% include '@App/helper/form-group.html.twig' with {'campo': form.set3p2, 'icono': 'check-square'} %}
+        <div class="row">
+            {% include '@App/helper/form-group.html.twig' with {'campo': form.partido, 'icono': 'border-all'} %}
+            <div class="col-xs-6 row-pareja">{{ pareja1 }}</div><div class="col-xs-6 row-pareja">{{ pareja2 }}</div>
+            {% include '@App/helper/form-group-resultado.html.twig' with {'campo1': form.set1p1,'campo2': form.set1p2 } %}
+            {% include '@App/helper/form-group-resultado.html.twig' with {'campo1': form.set2p1,'campo2': form.set2p2 } %}
+            {% include '@App/helper/form-group-resultado.html.twig' with {'campo1': form.set3p1,'campo2': form.set3p2 } %}
+        </div>
 
         <div class="pull-right">
             <input type="submit" value="Guardar" class="btn btn-success" />
