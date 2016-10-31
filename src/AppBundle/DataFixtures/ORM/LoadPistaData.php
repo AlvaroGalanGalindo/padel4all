@@ -43,7 +43,7 @@ class LoadPistaData extends AbstractFixture implements OrderedFixtureInterface
 
         $entity->setTipo($this->getReference("PISTATIPO".rand(1,3)));
         $entity->setPared($this->getReference("PISTAPARED".rand(1,2)));
-        $entity->setUser($this->getReference('USER1'));
+        $entity->setUser($this->getReference('USER'.rand(0,20)));
 
         return $entity;
     }

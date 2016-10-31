@@ -16,7 +16,7 @@ class PistaType extends AbstractType
     {
         $builder
             ->add('user', 'entity', array(
-                'class' => 'AppBundle\Entity\User',
+                'class' => 'UserBundle\Entity\User',
                 'required' => true,
                 'label' => 'Creador',
                 'disabled' => true

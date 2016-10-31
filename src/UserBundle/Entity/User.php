@@ -76,6 +76,7 @@ class User extends BaseUser
         $this->partidos_p1j2 = new ArrayCollection();
         $this->partidos_p2j1 = new ArrayCollection();
         $this->partidos_p2j2 = new ArrayCollection();
+        $this->setRoles(array('ROLE_USER'));
     }
 
     public function __toString() {

@@ -28,7 +28,7 @@ class LoadPartidoData extends AbstractFixture implements OrderedFixtureInterface
     private function getData()
     {
         $entity = new Partido();
-        $entity->setUser($this->getReference('USER1'));
+        $entity->setUser($this->getReference('USER'.rand(0,20)));
         $entity->setFecha($this->faker->dateTimeBetween($startDate = '+1 days', $endDate = '+1 months', $timezone = date_default_timezone_get()) );
         $entity->setPista($this->getReference("PISTA".rand(1,10)));
 
