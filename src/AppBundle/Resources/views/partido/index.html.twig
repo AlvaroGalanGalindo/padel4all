@@ -28,6 +28,8 @@
                             <div class="valor">{{ partido.getNumJugadores() }}</div>
                             <div class="etiqueta">Jugadores</div>
                             <div class="valor">{{ partido.getJugadores() | join(', ') }}</div>
+                            <div class="etiqueta">¿Resultados?</div>
+                            <div class="valor">{{ partido.resultado is not empty ? "Sí" : "No" }}</div>
                             <div class="botonera">
                                 <a href="{{ path('partidos_show', { 'id': partido.id }) }}" class="btn">Ver</a>
                                 {% set partido_user_id = partido.user.id %}
