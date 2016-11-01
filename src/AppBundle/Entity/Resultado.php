@@ -240,4 +240,20 @@ class Resultado
     {
         return $this->partido;
     }
+
+    public function getPareja1Ganadora() {
+        $setsGanados = 0;
+        if ($this->set1p1 > $this->set1p2) { $setsGanados++; }
+        if ($this->set2p1 > $this->set2p2) { $setsGanados++; }
+        if ($this->set3p1 > $this->set3p2) { $setsGanados++; }
+        return $setsGanados > 1;
+    }
+
+    public function getPareja2Ganadora() {
+        $setsGanados = 0;
+        if ($this->set1p1 < $this->set1p2) { $setsGanados++; }
+        if ($this->set2p1 < $this->set2p2) { $setsGanados++; }
+        if ($this->set3p1 < $this->set3p2) { $setsGanados++; }
+        return $setsGanados > 1;
+    }
 }

@@ -34,6 +34,30 @@
                         <div class="col-xs-12 col-sm-3 etiqueta">Teléfono:</div>
                         <div class="col-xs-12 col-sm-9 valor">{{ user.telefono }}</div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 etiqueta">Nº partidos:</div>
+                        <div class="col-xs-12 col-sm-9 valor">{{ user.getNumPartidos() }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 etiqueta">En izquierda:</div>
+                        <div class="col-xs-12 col-sm-9 valor">{{ user.getNumPartidosIzquierda() }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 etiqueta">En revés:</div>
+                        <div class="col-xs-12 col-sm-9 valor">{{ user.getNumPartidosReves() }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 etiqueta">Ganados:</div>
+                        <div class="col-xs-12 col-sm-9 valor">{{ user.getPartidosGanados() }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 etiqueta">Ganados izda:</div>
+                        <div class="col-xs-12 col-sm-9 valor">{{ user.getPartidosGanadosIzquierda() }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3 etiqueta">Ganados revés:</div>
+                        <div class="col-xs-12 col-sm-9 valor">{{ user.getPartidosGanadosReves() }}</div>
+                    </div>
                 </div>
             </div>
 

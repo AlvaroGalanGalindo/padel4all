@@ -354,4 +354,56 @@ class User extends BaseUser
     {
         return $this->partidos_p2j2;
     }
+
+    public function getNumPartidos() {
+        return count($this->partidos_p1j1) + count($this->partidos_p1j2) +
+               count($this->partidos_p2j1) + count($this->partidos_p2j2);
+    }
+
+    public function getNumPartidosIzquierda() {
+        return count($this->partidos_p1j1) + count($this->partidos_p2j1);
+    }
+
+    public function getNumPartidosReves() {
+        return count($this->partidos_p1j2) + count($this->partidos_p2j2);
+    }
+
+    public function getPartidosGanados() {
+        $aPareja1 = [$this->partidos_p1j1, $this->partidos_p1j2];
+        $aPareja2 = [$this->partidos_p2j1, $this->partidos_p2j2];
+        $num_partidos = 0;
+        foreach ($aPareja1 as $partidos) {
+            foreach ($partidos as $partido) {
+                if (!empty($partido->getResultado()) && $partido->getResultado()->getPareja1Ganadora()) { $num_partidos++; }
+            }
+        }
+        foreach ($aPareja2 as $partidos) {
+            foreach ($partidos as $partido) {
+                if (!empty($partido->getResultado()) && $partido->getResultado()->getPareja2Ganadora()) { $num_partidos++; }
+            }
+        }
+        return $num_partidos;
+    }
+
+    public function getPartidosGanadosIzquierda() {
+        $num_partidos = 0;
+        foreach ($this->partidos_p1j1 as $partido) {
+            if (!empty($partido->getResultado()) && $partido->getResultado()->getPareja1Ganadora()) { $num_partidos++; }
+        }
+        foreach ($this->partidos_p2j1 as $partido) {
+            if (!empty($partido->getResultado()) && $partido->getResultado()->getPareja2Ganadora()) { $num_partidos++; }
+        }
+        return $num_partidos;
+    }
+
+    public function getPartidosGanadosReves() {
+        $num_partidos = 0;
+        foreach ($this->partidos_p1j2 as $partido) {
+            if (!empty($partido->getResultado()) && $partido->getResultado()->getPareja1Ganadora()) { $num_partidos++; }
+        }
+        foreach ($this->partidos_p2j2 as $partido) {
+            if (!empty($partido->getResultado()) && $partido->getResultado()->getPareja2Ganadora()) { $num_partidos++; }
+        }
+        return $num_partidos;
+    }
 }
