@@ -27,23 +27,19 @@ class PartidoController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user_id = is_object($user) ? $this->get('security.token_storage')->getToken()->getUser()->getId() : 0;
 
-        if (is_object($user)) {
-            $user_id = $this->get('security.token_storage')->getToken()->getUser()->getId();
-
-            if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-                $partidos = $em->getRepository('AppBundle:Partido')->findAll();
-            } else {
-                $partidos = $em->getRepository('AppBundle:Partido')->findBy(array('user' => $user_id));
-            }
-
-            return $this->render('@App/partido/index.html.twig', array(
-                'partidos' => $partidos,
-            ));
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $partidos = $em->getRepository('AppBundle:Partido')->findAll();
+        } else {
+            $partidos = $em->getRepository('AppBundle:Partido')->findBy(array('user' => $user_id));
         }
-        
-        $this->redirect("homepage");
+
+        return $this->render('@App/partido/index.html.twig', array(
+            'partidos' => $partidos,
+        ));
     }
 
     /**

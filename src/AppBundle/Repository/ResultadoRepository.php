@@ -12,4 +12,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class ResultadoRepository extends EntityRepository
 {
+    public function getResultadosByUserId($id) {
+        $resultados = $this->createQueryBuilder('r')
+            ->select('r')
+            ->join('r.partido','p')
+            ->where('p.user = :user_id')
+            ->orderBy('p.fecha', 'DESC')
+            ->setParameter('user_id', $id)
+            ->getQuery()
+            ->getResult();
+
+        return $resultados;
+    }
 }

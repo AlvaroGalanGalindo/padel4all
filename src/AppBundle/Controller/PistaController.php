@@ -25,22 +25,19 @@ class PistaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+
         $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user_id = is_object($user) ? $this->get('security.token_storage')->getToken()->getUser()->getId() : 0;
 
-        if (is_object($user)) {
-            $user_id = $this->get('security.token_storage')->getToken()->getUser()->getId();
-
-            if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-                $pistas = $em->getRepository('AppBundle:Pista')->findAll();
-            } else {
-                $pistas = $em->getRepository('AppBundle:Pista')->findBy(array('user' => $user_id));
-            }
-
-            return $this->render('AppBundle:pista:index.html.twig', array(
-                'pistas' => $pistas,
-            ));
+        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
+            $pistas = $em->getRepository('AppBundle:Pista')->findAll();
+        } else {
+            $pistas = $em->getRepository('AppBundle:Pista')->findBy(array('user' => $user_id));
         }
-        $this->redirect("homepage");
+
+        return $this->render('AppBundle:pista:index.html.twig', array(
+            'pistas' => $pistas,
+        ));
     }
 
     /**
