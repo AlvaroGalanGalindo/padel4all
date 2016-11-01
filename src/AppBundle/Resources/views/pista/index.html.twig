@@ -7,16 +7,16 @@
                 <h2>Pistas</h2>
                 <div class="list-new"><a href="{{ path('pista_new') }}" class="btn">Crear nueva pista</a></div>
             </div>
-            {% if partidos | length == 0 %}
+            {% if pistas | length == 0 %}
                 <div class="list-mensaje">No hay aún ninguna pista</div>
             {% else %}
                 {% for pista in pistas %}
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item-container">
                         <div class="item item-pista">
-                            <div class="etiqueta">Nombre</div>
-                            <div class="valor">{{ pista.nombre }}</div>
                             <div class="etiqueta">Propietario</div>
                             <div class="valor">{{ pista.propietario }}</div>
+                            <div class="etiqueta">Nombre</div>
+                            <div class="valor">{{ pista.nombre }}</div>
                             <div class="etiqueta">Localidad</div>
                             <div class="valor">{{ pista.localidad }}</div>
                             <div class="etiqueta">telefono</div>
