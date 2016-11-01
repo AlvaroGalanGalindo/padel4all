@@ -6,22 +6,28 @@
             <div class="page-header">
                 <h2>Resultados</h2>
             </div>
-            {% for resultado in resultados %}
-                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item-container">
-                    <div class="item item-resultado">
-                        <div class="etiqueta">Fecha del partido</div>
-                        <div class="valor">{% if resultado.partido.fecha %}{{ resultado.partido.fecha|date('d-m-Y H:i') }}{% endif %}</div>
-                        <div class="etiqueta">Propietario de la pista</div>
-                        <div class="valor">{{ resultado.partido.pista.propietario }}</div>
-                        <div class="etiqueta">Nombre de la pista</div>
-                        <div class="valor">{{ resultado.partido.pista.nombre }}</div>
-                        <div class="botonera">
-                            <a href="{{ path('resultados_show', { 'id': resultado.id }) }}" class="btn">Ver</a>
-                            <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn">Editar</a>
+            {% if app.user is empty %}
+                <div class="list-mensaje">Debes hacer <a href="{{ path("fos_user_security_login") }}">login</a> para ver este listado</div>
+            {% elseif partidos | length == 0 %}
+                <div class="list-mensaje">No tienes aún ningún resultado</div>
+            {% else %}
+                {% for resultado in resultados %}
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item-container">
+                        <div class="item item-resultado">
+                            <div class="etiqueta">Fecha del partido</div>
+                            <div class="valor">{% if resultado.partido.fecha %}{{ resultado.partido.fecha|date('d-m-Y H:i') }}{% endif %}</div>
+                            <div class="etiqueta">Propietario de la pista</div>
+                            <div class="valor">{{ resultado.partido.pista.propietario }}</div>
+                            <div class="etiqueta">Nombre de la pista</div>
+                            <div class="valor">{{ resultado.partido.pista.nombre }}</div>
+                            <div class="botonera">
+                                <a href="{{ path('resultados_show', { 'id': resultado.id }) }}" class="btn">Ver</a>
+                                <a href="{{ path('resultados_edit', { 'id': resultado.id }) }}" class="btn">Editar</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
 {% endblock %}
