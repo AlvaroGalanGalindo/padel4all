@@ -12,9 +12,7 @@
                     <div class="list-new"><a href="{{ path('partidos_new') }}" class="btn">Crear nuevo partido</a></div>
                 {% endif %}
             </div>
-            {% if not logged %}
-                <div class="list-mensaje">Debes hacer <a href="{{ path("fos_user_security_login") }}">login</a> para ver este listado</div>
-            {% elseif partidos | length == 0 %}
+            {% if partidos | length == 0 %}
                 <div class="list-mensaje">No tienes aún ningún partido</div>
             {% else %}
                 {% for partido in partidos %}

@@ -27,25 +27,27 @@ class LoadPartidoData extends AbstractFixture implements OrderedFixtureInterface
 
     private function getData($i)
     {
+        $creador = $this->getReference('USER'.rand(0,20));
+
         $entity = new Partido();
-        $entity->setUser($this->getReference('USER'.rand(0,20)));
+        $entity->setUser($creador);
         $entity->setFecha($this->faker->dateTimeBetween($startDate = '+1 days', $endDate = '+1 months', $timezone = date_default_timezone_get()) );
         $entity->setPista($this->getReference("PISTA".rand(1,10)));
 
-        if ($i < 10) {
+        if ($i <= 10) {
             $fin = false;
             $jugadores = [];
             do {
                 $num = rand(1,10);
                 if (!in_array($num, $jugadores)) {
                     $jugadores[] = $num;
-                    $fin = count($jugadores) == 4;
+                    $fin = count($jugadores) == 3;
                 }
             } while (!$fin);
-            $entity->setP1j1($this->getReference("USER".$jugadores[0]));
-            $entity->setP1j2($this->getReference("USER".$jugadores[1]));
-            $entity->setP2j1($this->getReference("USER".$jugadores[2]));
-            $entity->setP2j2($this->getReference("USER".$jugadores[3]));
+            $entity->setP1j1($creador);
+            $entity->setP1j2($this->getReference("USER".$jugadores[0]));
+            $entity->setP2j1($this->getReference("USER".$jugadores[1]));
+            $entity->setP2j2($this->getReference("USER".$jugadores[2]));
         }
 
         return $entity;
@@ -56,9 +58,18 @@ class LoadPartidoData extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        for ($i=1; $i <= 10; $i++) {
+        $contPartido = 0;
+        $contPartidoCompleto = 0;
+        for ($i=1; $i <= 20; $i++) {
             $entity = $this->getData($i);
-            $this->setReference("partido".$i, $entity);
+            if (empty($entity->getP1j1())) {
+                $contPartido++;
+                $this->setReference("PARTIDO".$contPartido, $entity);
+            } else {
+                $contPartidoCompleto++;
+                $this->setReference("PARTIDOCOMPLETO".$contPartidoCompleto, $entity);
+            }
+
             $manager->persist($entity);
         }
 

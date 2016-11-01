@@ -1,6 +1,6 @@
 {% extends '@App/base.html.twig' %}
 
-{% set editar = admin or app.user.id == partido.user.id %}
+{% set editar = admin or (app.user is not empty and app.user.id == partido.user.id) %}
 {% set editar_class = editar ? "col-xs-12 col-sm-4" : "col-xs-12" %}
 
 {% block content %}
@@ -68,7 +68,9 @@
                         </tr>
                         </tbody>
                     </table>
-                    <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
+                    {% if editar %}
+                        <a href="{{ path('resultados_edit', {'id': partido.resultado.id }) }}">Editar resultados</a>
+                    {% endif %}
                 {% endif %}
             </div>
         </div>
