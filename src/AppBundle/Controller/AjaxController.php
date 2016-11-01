@@ -58,7 +58,7 @@ class AjaxController extends Controller
         $user = null;
 
         if (!$quitar) {
-            $user = $em->getRepository('AppBundle:User')->find($userId);
+            $user = $em->getRepository('UserBundle:User')->find($userId);
             if (!$partido || !$user) {
                 return false;
             }

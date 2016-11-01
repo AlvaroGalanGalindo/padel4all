@@ -150,7 +150,7 @@ class ResultadoController extends Controller
         if (!$esAdmin && $resultado->getPartido()->getUser()->getId() != $user_id) {
             return $this->redirectToRoute("homepage");
         }
-        
+
         $form = $this->createDeleteForm($resultado);
         $form->handleRequest($request);
 
