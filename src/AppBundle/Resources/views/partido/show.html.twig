@@ -1,7 +1,13 @@
 {% extends '@App/base.html.twig' %}
 
-{% set editar = admin or (app.user is not empty and app.user.id == partido.user.id) %}
+{% set user_id = app.user is not empty ? app.user.id : 0 %}
+{% set creador = user_id == partido.user.id %}
+{% set editar = admin or creador %}
 {% set editar_class = editar ? "col-xs-12 col-sm-4" : "col-xs-12" %}
+{% set linkp1j1 = admin or creador or (partido.p1j1 is not empty and user_id == partido.p1j1.id) %}
+{% set linkp1j2 = admin or creador or (partido.p1j2 is not empty and user_id == partido.p1j2.id) %}
+{% set linkp2j1 = admin or creador or (partido.p2j1 is not empty and user_id == partido.p2j1.id) %}
+{% set linkp2j2 = admin or creador or (partido.p2j2 is not empty and user_id == partido.p2j2.id) %}
 
 {% block content %}
     <div class="content entity-show entity-show-partido">
@@ -28,12 +34,12 @@
             <div class="col-xs-12 col-sm-12 col-md-4 pista-col">
                 <div class="container pista">
                     <div class="row">
-                        {% include '@App/helper/partido-show-jugador.html.twig' with {'jugador': partido.p1j1, 'posicion': 'p1j1'} %}
-                        {% include '@App/helper/partido-show-jugador.html.twig' with {'jugador': partido.p2j2, 'posicion': 'p2j2'} %}
+                        {% include '@App/helper/partido-show-jugador.html.twig' with {'jugador': partido.p1j1, 'posicion': 'p1j1', 'link': linkp1j1} %}
+                        {% include '@App/helper/partido-show-jugador.html.twig' with {'jugador': partido.p2j2, 'posicion': 'p2j2', 'link': linkp2j2} %}
                     </div>
                     <div class="row">
-                        {% include '@App/helper/partido-show-jugador.html.twig' with {'jugador': partido.p1j2, 'posicion': 'p1j2'} %}
-                        {% include '@App/helper/partido-show-jugador.html.twig' with {'jugador': partido.p2j1, 'posicion': 'p2j1'} %}
+                        {% include '@App/helper/partido-show-jugador.html.twig' with {'jugador': partido.p1j2, 'posicion': 'p1j2', 'link': linkp1j2} %}
+                        {% include '@App/helper/partido-show-jugador.html.twig' with {'jugador': partido.p2j1, 'posicion': 'p2j1', 'link': linkp2j1} %}
                     </div>
                 </div>
             </div>

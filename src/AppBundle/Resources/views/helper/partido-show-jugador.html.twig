@@ -3,7 +3,9 @@
         <div><img id="img-{{ posicion }}" class="{{ jugador is empty ? 'libre' : 'ocupado' }}" src="{{ asset('images/cara.svg') }}"></div>
         <div id="{{ posicion }}">
             {% if jugador is not empty %}
-                <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
+                {% if link %}
+                    <a class="quitar" href="#" onclick="setJugadorPartido(this, true);">X </a>
+                {% endif %}
                 {{ jugador.username }}
             {% else %}
                 <a class="join" href="#" onclick="setJugadorPartido(this, false);">¡Apúntate!</a>
