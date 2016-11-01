@@ -27,9 +27,11 @@ class PistaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $pistas = $em->getRepository('AppBundle:Pista')->findAllOrderedByPropietarioNombre();
+        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('AppBundle:pista:index.html.twig', array(
             'pistas' => $pistas,
+            'admin' => $admin,
         ));
     }
 

@@ -26,21 +26,12 @@ class ResultadoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $user_id = is_object($user) ? $this->get('security.token_storage')->getToken()->getUser()->getId() : 0;
-
-        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            ld("hola");
-            $resultados = $em->getRepository('AppBundle:Resultado')->findAll();
-            ld($resultados);
-        } else {
-            ld($user_id);
-            $resultados = $em->getRepository('AppBundle:Resultado')->getResultadosByUserId($user_id);
-            ld($resultados);
-        }
+        $resultados = $em->getRepository('AppBundle:Resultado')->findAll();
+        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('@App/resultado/index.html.twig', array(
             'resultados' => $resultados,
+            'admin' => $admin,
         ));
     }
 

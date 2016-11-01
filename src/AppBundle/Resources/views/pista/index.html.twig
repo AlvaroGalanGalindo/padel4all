@@ -1,11 +1,16 @@
 {% extends '@App/base.html.twig' %}
 
+{% set logged = app.user is not empty %}
+{% set user_id = logged ? app.user.id : 0 %}
+
 {% block content %}
     <div class="content">
         <div class="row">
             <div class="page-header">
                 <h2>Pistas</h2>
-                <div class="list-new"><a href="{{ path('pista_new') }}" class="btn">Crear nueva pista</a></div>
+                {% if logged %}
+                    <div class="list-new"><a href="{{ path('pista_new') }}" class="btn">Crear nueva pista</a></div>
+                {% endif %}
             </div>
             {% if pistas | length == 0 %}
                 <div class="list-mensaje">No hay aún ninguna pista</div>
@@ -23,7 +28,10 @@
                             <div class="valor">{{ pista.telefono }}</div>
                             <div class="botonera">
                                 <a href="{{ path('pista_show', { 'id': pista.id }) }}" class="btn">Ver</a>
-                                <a href="{{ path('pista_edit', { 'id': pista.id }) }}" class="btn">Editar</a>
+                                {% set pista_user_id = pista.user.id %}
+                                {% if admin or user_id == pista_user_id %}
+                                    <a href="{{ path('pista_edit', { 'id': pista.id }) }}" class="btn">Editar</a>
+                                {% endif %}
                             </div>
                         </div>
                     </div>

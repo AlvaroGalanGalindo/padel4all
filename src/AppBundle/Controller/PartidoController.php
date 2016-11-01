@@ -28,17 +28,12 @@ class PartidoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $user = $this->get('security.token_storage')->getToken()->getUser();
-        $user_id = is_object($user) ? $this->get('security.token_storage')->getToken()->getUser()->getId() : 0;
-
-        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $partidos = $em->getRepository('AppBundle:Partido')->findAllOrderedByFechaDesc();
-        } else {
-            $partidos = $em->getRepository('AppBundle:Partido')->findAllByUserOrderedByFechaDesc($user_id);
-        }
+        $partidos = $em->getRepository('AppBundle:Partido')->findAllOrderedByFechaDesc();
+        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('@App/partido/index.html.twig', array(
             'partidos' => $partidos,
+            'admin' => $admin,
         ));
     }
 
