@@ -13,11 +13,14 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-
+        $em = $this->getDoctrine()->getManager();
+        $ultimos_no_jugados = $em->getRepository('AppBundle:Partido')->findUltimosOrderedByFechaDesc(false);
+        $ultimos_jugados = $em->getRepository('AppBundle:Partido')->findUltimosOrderedByFechaDesc(true);
 
         // replace this example code with whatever you need
         return $this->render('@App/default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+            'ultimos_no_jugados' => $ultimos_no_jugados,
+            'ultimos_jugados' => $ultimos_jugados,
         ));
     }
 }

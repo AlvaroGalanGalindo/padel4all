@@ -12,6 +12,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class PartidoRepository extends EntityRepository
 {
+    public function findUltimosOrderedByFechaDesc($jugados) {
+        $query = $this->createQueryBuilder('p')
+            ->select('p')
+            ->leftJoin('p.resultado', 'r')
+            ->addOrderBy('p.fecha', 'DESC')
+            ->setMaxResults(5);
+
+        if ($jugados) {
+            $query->where('r.partido is not NULL');
+        } else {
+            $query->where('r.partido is NULL');
+        }
+
+        $result = $query->getQuery()->getResult();
+
+        return $result;
+    }
+
     public function findAllOrderedByFechaDesc() {
         return $this->createQueryBuilder('p')
             ->addOrderBy('p.fecha', 'DESC')

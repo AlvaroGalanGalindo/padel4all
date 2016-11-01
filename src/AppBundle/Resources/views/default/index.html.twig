@@ -2,28 +2,57 @@
 
 {% block content %}
     <div class="container-fluid portada">
-        <div class="row ">
+        <div class="row">
             <a href="{{ path("pista_index") }}">
-                <div class="col-xs-12 col-sm-6 col-md-4 item-container">
+                <div class="col-xs-12 col-sm-4 item-container">
                     <div class="item">
                         <img class="img-responsive center-block animated zoomIn" src="{{ asset("images/pista.png") }}"><div class="titulo">PISTAS</div>
                     </div>
                 </div>
             </a>
             <a href="{{ path("partidos_index") }}">
-                <div class="col-xs-12 col-sm-6 col-md-4 item-container">
+                <div class="col-xs-12 col-sm-4 item-container">
                     <div class="item">
                         <img class="img-responsive center-block animated zoomIn" src="{{ asset("images/partido.png") }}"><div class="titulo">PARTIDOS</div>
                     </div>
                 </div>
             </a>
             <a href="{{ path("resultados_index") }}">
-                <div class="col-xs-12 col-sm-6 col-md-4 item-container">
+                <div class="col-xs-12 col-sm-4 item-container">
                     <div class="item">
                         <img class="img-responsive center-block animated zoomIn" src="{{ asset("images/resultado.png") }}"><div class="titulo">RESULTADOS</div>
                     </div>
                 </div>
             </a>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 item-container">
+                <div class="ultimos-partidos">
+                    <div class="titulo"><h4>Últimos partidos pendientes</h4></div>
+                    {% for partido in ultimos_no_jugados %}
+                        <a href="{{ path('partidos_show', { 'id': partido.id }) }}">
+                            <div class="item">
+                                <div class="pull-left"><span class="zmdi zmdi-hc-2x zmdi-hourglass-alt"></span></div>
+                                {{ partido.fecha|date('d-m-Y H:i') }} - {{ partido.pista.propietario }} {{ partido.pista.nombre }}
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 item-container">
+                <div class="ultimos-partidos">
+                    <div class="titulo"><h4>Últimos partidos finalizados</h4></div>
+
+                    {% for partido in ultimos_jugados %}
+                        <a href="{{ path('partidos_show', { 'id': partido.id }) }}">
+                            <div class="item">
+                                <div class="pull-left"><span class="zmdi zmdi-hc-2x zmdi-check-all"></span></div>
+                                <div>{{ partido.fecha|date('d-m-Y H:i') }} - {{ partido.pista.propietario }} {{ partido.pista.nombre }}</div>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

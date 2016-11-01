@@ -9,9 +9,7 @@
             <div class="page-header">
                 <h2>Resultados</h2>
             </div>
-            {% if app.user is empty %}
-                <div class="list-mensaje">Debes hacer <a href="{{ path("fos_user_security_login") }}">login</a> para ver este listado</div>
-            {% elseif resultados | length == 0 %}
+            {% if resultados | length == 0 %}
                 <div class="list-mensaje">No tienes aún ningún resultado</div>
             {% else %}
                 {% for resultado in resultados %}

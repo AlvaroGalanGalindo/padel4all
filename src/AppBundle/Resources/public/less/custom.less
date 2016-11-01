@@ -5,6 +5,7 @@
 
 // Definición de colores
 @verde-pista: #84ad52;
+@azul-texto: #337ab7;
 
 body {
   background-color: white;
@@ -286,4 +287,29 @@ body {
   a:hover {
     color: lightskyblue;
   }
+}
+
+.ultimos-partidos {
+  text-align: center;
+  .item {
+    margin-top: 5px;
+    .zmdi {
+      width: 20px;
+      margin-top: -3px;
+    }
+  }
+  a:hover {
+    text-decoration: none;
+    color: white;
+
+  }
+  .titulo {
+    border-bottom: 0.36em solid @azul-texto;
+    h4 {
+      text-align: center;
+      color: @azul-texto;
+      padding-botom: 10px;
+    }
+  }
+
 }
