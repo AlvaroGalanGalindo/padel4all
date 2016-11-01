@@ -74,10 +74,12 @@ class PistaController extends Controller
     public function showAction(Pista $pistum)
     {
         $deleteForm = $this->createDeleteForm($pistum);
+        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('AppBundle:pista:show.html.twig', array(
             'pistum' => $pistum,
             'delete_form' => $deleteForm->createView(),
+            'admin' => $admin,
         ));
     }
 

@@ -88,10 +88,12 @@ class PartidoController extends Controller
     public function showAction(Partido $partido)
     {
         $deleteForm = $this->createDeleteForm($partido);
+        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('@App/partido/show.html.twig', array(
             'partido' => $partido,
             'delete_form' => $deleteForm->createView(),
+            'admin' => $admin,
         ));
     }
 

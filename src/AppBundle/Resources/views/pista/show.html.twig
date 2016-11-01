@@ -1,5 +1,8 @@
 {% extends '@App/base.html.twig' %}
 
+{% set editar = admin or app.user.id == pistum.user.id %}
+{% set editar_class = editar ? "col-xs-12 col-sm-4" : "col-xs-12" %}
+
 {% block content %}
     <div class="page-header">
         <h2>Detalles de la pista</h2>
@@ -42,15 +45,19 @@
 
         <div class="container botonera">
             <div class="row">
-                <div class="col-xs-12 col-sm-4">
-                    <a href="{{ path('pista_edit', { 'id': pistum.id }) }}" class="btn btn-success">Editar</a>
-                </div>
-                <div class="col-xs-12 col-sm-4">
+                {% if editar %}
+                    <div class="col-xs-12 col-sm-4">
+                        <a href="{{ path('pista_edit', { 'id': pistum.id }) }}" class="btn btn-success">Editar</a>
+                    </div>
+                {% endif %}
+                <div class="{{ editar_class }}">
                     <a href="{{ path('pista_index') }}" class="btn btn-info">Volver al listado</a>
                 </div>
-                <div class="col-xs-12 col-sm-4">
-                    {{ form_start(delete_form) }}<input type="submit" value="Borrar" class="btn btn-danger">{{ form_end(delete_form) }}
-                </div>
+                {% if editar %}
+                    <div class="col-xs-12 col-sm-4">
+                        {{ form_start(delete_form) }}<input type="submit" value="Borrar" class="btn btn-danger">{{ form_end(delete_form) }}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

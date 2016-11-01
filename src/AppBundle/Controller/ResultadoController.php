@@ -80,10 +80,12 @@ class ResultadoController extends Controller
     public function showAction(Resultado $resultado)
     {
         $deleteForm = $this->createDeleteForm($resultado);
+        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('@App/resultado/show.html.twig', array(
             'resultado' => $resultado,
             'delete_form' => $deleteForm->createView(),
+            'admin' => $admin,
         ));
     }
 
