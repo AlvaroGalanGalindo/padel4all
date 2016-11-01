@@ -30,7 +30,7 @@ class PistaController extends Controller
         $user_id = is_object($user) ? $this->get('security.token_storage')->getToken()->getUser()->getId() : 0;
 
         if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $pistas = $em->getRepository('AppBundle:Pista')->findAll();
+            $pistas = $em->getRepository('AppBundle:Pista')->findAllOrderedByFechaDesc();
         } else {
             $pistas = $em->getRepository('AppBundle:Pista')->findBy(array('user' => $user_id));
         }

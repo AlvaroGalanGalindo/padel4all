@@ -11,5 +11,10 @@ use Doctrine\ORM\EntityRepository;
  */
 class PistaRepository extends EntityRepository
 {
-
+    public function findAllOrderedByFechaDesc() {
+        return $this->createQueryBuilder('p')
+            ->addOrderBy('p.fecha', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 }

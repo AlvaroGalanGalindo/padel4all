@@ -12,6 +12,21 @@ use Doctrine\ORM\EntityRepository;
  */
 class PartidoRepository extends EntityRepository
 {
+    public function findAllOrderedByFechaDesc() {
+        return $this->createQueryBuilder('p')
+            ->addOrderBy('p.fecha', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findAllByUserOrderedByFechaDesc($id) {
+        return $this->createQueryBuilder('p')
+            ->where("p.user = :user_id")
+            ->setParameter('user_id', $id)
+            ->addOrderBy('p.fecha', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
     public function getPartidoAtPistaFecha($partido_id, $pista_id, $fecha_reserva)
     {
