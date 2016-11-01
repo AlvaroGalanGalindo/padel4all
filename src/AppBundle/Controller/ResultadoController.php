@@ -43,6 +43,11 @@ class ResultadoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if (!is_object($user)) {
+            return $this->redirectToRoute("homepage");
+        }
+
         $resultado = new Resultado();
         $em = $this->getDoctrine()->getManager();
 
@@ -80,12 +85,11 @@ class ResultadoController extends Controller
     public function showAction(Resultado $resultado)
     {
         $deleteForm = $this->createDeleteForm($resultado);
-        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('@App/resultado/show.html.twig', array(
             'resultado' => $resultado,
             'delete_form' => $deleteForm->createView(),
-            'admin' => $admin,
+            'admin' => $this->get('security.context')->isGranted('ROLE_ADMIN'),
         ));
     }
 
@@ -97,6 +101,14 @@ class ResultadoController extends Controller
      */
     public function editAction(Request $request, Resultado $resultado)
     {
+        $esAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user_id = is_object($user) ? $user->getId() : 0;
+
+        if (!$esAdmin && $resultado->getPartido()->getUser()->getId() != $user_id) {
+            return $this->redirectToRoute("homepage");
+        }
+
         $deleteForm = $this->createDeleteForm($resultado);
         $editForm = $this->createForm('AppBundle\Form\ResultadoType', $resultado);
         $editForm->handleRequest($request);
@@ -131,6 +143,14 @@ class ResultadoController extends Controller
      */
     public function deleteAction(Request $request, Resultado $resultado)
     {
+        $esAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user_id = is_object($user) ? $user->getId() : 0;
+
+        if (!$esAdmin && $resultado->getPartido()->getUser()->getId() != $user_id) {
+            return $this->redirectToRoute("homepage");
+        }
+        
         $form = $this->createDeleteForm($resultado);
         $form->handleRequest($request);
 
