@@ -45,6 +45,11 @@ class PartidoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if (!is_object($user)) {
+            return $this->redirectToRoute("homepage");
+        }
+
         $partido = new Partido();
         $form = $this->createForm('AppBundle\Form\PartidoType', $partido);
         $form->handleRequest($request);
@@ -69,7 +74,6 @@ class PartidoController extends Controller
             }
         }
 
-        $user = $this->get('security.context')->getToken()->getUser();
         $form->get('user')->setData($user);
 
         return $this->render('@App/partido/edit.html.twig', array(
@@ -88,12 +92,11 @@ class PartidoController extends Controller
     public function showAction(Partido $partido)
     {
         $deleteForm = $this->createDeleteForm($partido);
-        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('@App/partido/show.html.twig', array(
             'partido' => $partido,
             'delete_form' => $deleteForm->createView(),
-            'admin' => $admin,
+            'admin' => $this->get('security.context')->isGranted('ROLE_ADMIN'),
         ));
     }
 
@@ -105,6 +108,14 @@ class PartidoController extends Controller
      */
     public function editAction(Request $request, Partido $partido)
     {
+        $esAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user_id = is_object($user) ? $user->getId() : 0;
+
+        if (!$esAdmin && $partido->getUser()->getId() != $user_id) {
+            return $this->redirectToRoute("homepage");
+        }
+
         $deleteForm = $this->createDeleteForm($partido);
         $editForm = $this->createForm('AppBundle\Form\PartidoType', $partido);
         $editForm->handleRequest($request);
@@ -143,6 +154,14 @@ class PartidoController extends Controller
      */
     public function deleteAction(Request $request, Partido $partido)
     {
+        $esAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user_id = is_object($user) ? $user->getId() : 0;
+
+        if (!$esAdmin && $partido->getUser()->getId() != $user_id) {
+            return $this->redirectToRoute("homepage");
+        }
+
         $form = $this->createDeleteForm($partido);
         $form->handleRequest($request);
 
