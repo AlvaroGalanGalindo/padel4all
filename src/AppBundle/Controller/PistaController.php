@@ -27,11 +27,10 @@ class PistaController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $pistas = $em->getRepository('AppBundle:Pista')->findAllOrderedByPropietarioNombre();
-        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('AppBundle:pista:index.html.twig', array(
             'pistas' => $pistas,
-            'admin' => $admin,
+            'admin' => $this->get('security.context')->isGranted('ROLE_ADMIN'),
         ));
     }
 
@@ -43,6 +42,11 @@ class PistaController extends Controller
      */
     public function newAction(Request $request)
     {
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if (!is_object($user)) {
+            return $this->redirectToRoute("homepage");
+        }
+
         $pistum = new Pista();
         $form = $this->createForm('AppBundle\Form\PistaType', $pistum);
         $form->handleRequest($request);
@@ -55,7 +59,6 @@ class PistaController extends Controller
             return $this->redirectToRoute('pista_show', array('id' => $pistum->getId()));
         }
 
-        $user = $this->get('security.context')->getToken()->getUser();
         $form->get('user')->setData($user);
 
         return $this->render('AppBundle:pista:edit.html.twig', array(
@@ -74,12 +77,11 @@ class PistaController extends Controller
     public function showAction(Pista $pistum)
     {
         $deleteForm = $this->createDeleteForm($pistum);
-        $admin = $this->get('security.context')->isGranted('ROLE_ADMIN');
 
         return $this->render('AppBundle:pista:show.html.twig', array(
             'pistum' => $pistum,
             'delete_form' => $deleteForm->createView(),
-            'admin' => $admin,
+            'admin' => $esAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN'),
         ));
     }
 
@@ -91,6 +93,14 @@ class PistaController extends Controller
      */
     public function editAction(Request $request, Pista $pistum)
     {
+        $esAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user_id = is_object($user) ? $user->getId() : 0;
+
+        if (!$esAdmin && $pistum->getUser()->getId() != $user_id) {
+            return $this->redirectToRoute("homepage");
+        }
+
         $deleteForm = $this->createDeleteForm($pistum);
         $editForm = $this->createForm('AppBundle\Form\PistaType', $pistum);
         $editForm->handleRequest($request);
@@ -119,6 +129,14 @@ class PistaController extends Controller
      */
     public function deleteAction(Request $request, Pista $pistum)
     {
+        $esAdmin = $this->get('security.context')->isGranted('ROLE_ADMIN');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        $user_id = is_object($user) ? $user->getId() : 0;
+
+        if (!$esAdmin && $pistum->getUser()->getId() != $user_id) {
+            return $this->redirectToRoute("homepage");
+        }
+
         $form = $this->createDeleteForm($pistum);
         $form->handleRequest($request);
 
