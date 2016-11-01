@@ -4,7 +4,10 @@
 {% set p1j2 = resultado.partido.p1j2 is empty ? "sin jugador" : resultado.partido.p1j2.username %}
 {% set p2j1 = resultado.partido.p2j1 is empty ? "sin jugador" : resultado.partido.p2j1.username %}
 {% set p2j2 = resultado.partido.p2j2 is empty ? "sin jugador" : resultado.partido.p2j2.username %}
-{% set editar = admin or app.user.id == resultado.partido.user.id %}
+
+{% set user_id = app.user is not empty ? app.user.id : 0 %}
+{% set creador = user_id == resultado.partido.user.id %}
+{% set editar = admin or creador %}
 {% set editar_class = editar ? "col-xs-12 col-sm-4" : "col-xs-12" %}
 
 {% block content %}
