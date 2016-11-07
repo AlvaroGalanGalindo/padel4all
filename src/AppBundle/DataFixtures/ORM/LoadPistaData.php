@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\DataFixtures\ORM\dev;
+namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Pista;
 use Doctrine\Common\Persistence\ObjectManager;
