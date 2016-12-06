@@ -7,6 +7,12 @@ use AppBundle\Entity\PistaTipo;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
+/**
+ * LoadPistaTipo.
+ *
+ * Carga en base de datos de tipos de pistas
+ *
+ */
 class LoadPistaTipoData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function getOrder()

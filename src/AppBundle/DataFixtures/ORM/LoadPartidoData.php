@@ -7,6 +7,12 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
+/**
+ * LoadPartido.
+ *
+ * Carga en base de datos de partidos
+ *
+ */
 class LoadPartidoData extends AbstractFixture implements OrderedFixtureInterface
 {
     protected $faker;

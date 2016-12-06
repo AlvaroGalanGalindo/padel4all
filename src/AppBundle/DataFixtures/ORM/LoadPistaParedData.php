@@ -7,6 +7,12 @@ use AppBundle\Entity\PistaPared;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
+/**
+ * LoadPistaPared.
+ *
+ * Carga en base de datos de tipos de pared de pistas
+ *
+ */
 class LoadPistaParedData extends AbstractFixture implements OrderedFixtureInterface
 {
     public function getOrder()

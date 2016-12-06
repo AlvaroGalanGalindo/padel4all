@@ -7,6 +7,12 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
+/**
+ * LoadResultado.
+ *
+ * Carga en base de datos de resultados
+ *
+ */
 class LoadResultadoData extends AbstractFixture implements OrderedFixtureInterface
 {
     protected $faker;

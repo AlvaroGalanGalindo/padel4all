@@ -241,6 +241,11 @@ class Resultado
         return $this->partido;
     }
 
+    /**
+     * Get pareja 1 ganadora
+     *
+     * @return boolean
+     */
     public function getPareja1Ganadora() {
         $setsGanados = 0;
         if ($this->set1p1 > $this->set1p2) { $setsGanados++; }
@@ -249,6 +254,11 @@ class Resultado
         return $setsGanados > 1;
     }
 
+    /**
+     * Get pareja 2 ganadora
+     *
+     * @return boolean
+     */
     public function getPareja2Ganadora() {
         $setsGanados = 0;
         if ($this->set1p1 < $this->set1p2) { $setsGanados++; }

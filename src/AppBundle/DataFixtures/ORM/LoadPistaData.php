@@ -7,6 +7,12 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 
+/**
+ * LoadPista.
+ *
+ * Carga en base de datos de pistas
+ *
+ */
 class LoadPistaData extends AbstractFixture implements OrderedFixtureInterface
 {
     protected $faker;

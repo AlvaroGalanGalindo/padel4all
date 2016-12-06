@@ -6,9 +6,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Default controller.
+ *
+ * Controlador por defecto
+ */
 class DefaultController extends Controller
 {
     /**
+     * Acción para el homepage. Obtiene listados de últimos partidos pendientes y jugados.
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)

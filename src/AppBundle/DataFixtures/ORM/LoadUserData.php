@@ -10,6 +10,12 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use UserBundle\Entity\User;
 
+/**
+ * LoadUser.
+ *
+ * Carga en base de datos de usuarios
+ *
+ */
 class LoadUserData extends AbstractFixture implements ContainerAwareInterface, OrderedFixtureInterface
 {
     public function setContainer(ContainerInterface $container = null)
@@ -67,32 +73,7 @@ class LoadUserData extends AbstractFixture implements ContainerAwareInterface, O
 
     function load(ObjectManager $manager)
     {
-        /*$userManager = $this->container->get('fos_user.user_manager');
-
-        $entidad = $userManager->createUser();
-        $entidad->setEnabled(true);
-        $entidad->setUsername('admin');
-        $entidad->setEmail('alvaro.galgal@gmail.com');
-        $entidad->setNombre('Alvaro');
-        $entidad->setApellidos('Galan');
-        $entidad->setTelefono(666444777);
-        $entidad->setPlainPassword('admin');
-        $entidad->setRoles(array('ROLE_ADMIN'));
-        $this->setReference('Admin', $entidad);
-        $userManager->updateUser($entidad);
-        $this->setReference("USER" . 1, $entidad);*/
-
         $this->addAdmin();
         $this->addUsers();
-        //$this->setReference("USER0", $entity);
-        //$manager->persist($entity);
-
-        /*for ($i=1; $i <= 20; $i++) {
-            $entity = $this->getData();
-            $this->setReference("PISTA".$i, $entity);
-            $manager->persist($entity);
-        }*/
-
-        //$manager->flush();
     }
 }

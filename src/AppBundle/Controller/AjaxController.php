@@ -10,14 +10,15 @@ use UserBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * User controller.
+ * Ajax controller.
+ *
+ * Controlador para llamadas AJAX
  *
  */
 class AjaxController extends Controller
 {
     /**
-     * Displays a form to edit an existing Partido entity.
-     *
+     * Función pública para apuntar o quitar un jugador a un partido.
      * @Route("/ajax_usermatch", name="ajax_usermatch")
      * @Method({"GET", "POST"})
      */
@@ -51,6 +52,12 @@ class AjaxController extends Controller
         return new Response(json_encode($response));
     }
 
+    /**
+     * Función privada para apuntar un jugador a un partido.
+     *
+     * @Route("/ajax_usermatch", name="ajax_usermatch")
+     * @Method({"GET", "POST"})
+     */
     private function addUserToPartido($partidoId, $userId, $posicion, $quitar)
     {
         $em = $this->getDoctrine()->getManager();
